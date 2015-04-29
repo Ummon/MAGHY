@@ -1,8 +1,8 @@
-﻿module FSharpTDD.AssemblyInfo
+﻿module ShoppingCart.AssemblyInfo
 open System.Reflection
 open System.Runtime.CompilerServices
 
-[<assembly: AssemblyTitle("FSharpTDD")>]
+[<assembly: AssemblyTitle("ShoppingCart")>]
 [<assembly: AssemblyDescription("")>]
 [<assembly: AssemblyConfiguration("")>]
 [<assembly: AssemblyCompany("")>]

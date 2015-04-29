@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{C36A62A7-C37E-4E88-9D04-D52966378E28}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FSharpTDD</RootNamespace>
+    <RootNamespace>ShoppingCart</RootNamespace>
     <AssemblyName>FSharp-TDD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Element.fs" />
     <Compile Include="Tests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
