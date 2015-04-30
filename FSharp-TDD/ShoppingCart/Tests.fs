@@ -29,27 +29,27 @@ type ``Currency`` () =
 
     [<Test>]
     member this.``Equality`` () = 
-        { Amount = 12M; Currency = USD } |> should equal { Amount = 10.8M; Currency = CHF }
-        { Amount = 12M; Currency = USD } |> should not' (equal { Amount = 12M; Currency = CHF })
+        Money (12, USD) |> should equal (Money (10.8M, CHF))
+        Money (12, USD) |> should not' (equal (Money (12, CHF)))
 
     [<Test>]
     member this.``Comparisons`` () =
-        { Amount = 3M; Currency = USD } > { Amount = 1M; Currency = USD } |> should be True
-        { Amount = 2M; Currency = CHF } > { Amount = 2.1M; Currency = USD } |> should be True
-        { Amount = 1M; Currency = XBT } <= { Amount = 200M; Currency = USD } |> should be True
-        { Amount = 1M; Currency = XBT } <= { Amount = 180M; Currency = CHF } |> should be True
+        Money (3, USD) > Money (1, USD) |> should be True
+        Money (2, CHF) > Money (2, USD) |> should be True
+        Money (1, XBT) <= Money (200, USD) |> should be True
+        Money (1, XBT) <= Money (180, CHF) |> should be True
 
     [<Test>]
     member this.``Matematical operations`` () =
-        { Amount = 3M; Currency = USD } + { Amount = 1M; Currency = USD } |> should equal { Amount = 4M; Currency = USD }
-        { Amount = 40M; Currency = USD } - { Amount = 9M; Currency = CHF } |> should equal { Amount = 30M; Currency = USD }
-        10M * { Amount = 9M; Currency = XBT } |> should equal { Amount = 90M; Currency = XBT }
-        { Amount = 5M; Currency = USD } - { Amount = 9M; Currency = CHF } * 2M |> should equal { Amount = -15M; Currency = USD }
+        Money (3, USD) + Money (1, USD) |> should equal (Money (4, USD))
+        Money (40, USD) - Money (9, CHF) |> should equal (Money (30, USD))
+        10 * Money (9, XBT) |> should equal (Money (90, XBT))
+        Money (5, USD) - Money (9, CHF) * 2M |> should equal (Money (-15, USD))
 
 (*[<TestFixture>]
-type ``Elements`` () =
+type ``Books`` () =
     [<Test>]
-    member this.``Create an element with correct properties`` () =
+    member this.``Create a book with correct properties`` () =
         let elem = Element ("Testing with F#", *)
 
 [<TestFixture>]

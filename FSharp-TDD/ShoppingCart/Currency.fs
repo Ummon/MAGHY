@@ -1,4 +1,4 @@
-﻿module Currency
+﻿module ShoppingCart.Currency
 
 open System
 
@@ -15,15 +15,19 @@ let convert amount fromCurrency toCurrency =
     | XBT, USD -> amount / USD_XBT_rate
     | _ -> amount
 
-[<CustomComparison; CustomEquality>]
-type Money = 
-    { Amount : decimal; Currency : Currency }
+//[<CustomComparison; CustomEquality>]
+type Money (amount : decimal, currency : Currency) = 
+    let convertTo toCurrency =
+        convert amount currency toCurrency
 
-    member this.Convert currency = { Amount = convert this.Amount this.Currency currency; Currency = currency }
+    new (amount : int, currency : Currency) = Money (decimal amount, currency)
+    member this.Amount = amount
+    member this.Currency = currency
+    member this.Convert toCurrency = Money (convertTo toCurrency, toCurrency)
 
     interface IComparable<Money> with
         member this.CompareTo other =
-            compare (this.Convert USD).Amount (other.Convert USD).Amount
+            compare (convertTo USD) (convert other.Amount other.Currency USD)
 
     interface IComparable with
         member this.CompareTo obj =
@@ -33,7 +37,7 @@ type Money =
 
     interface IEquatable<Money> with
         member this.Equals other =
-            (this.Convert USD).Amount = (other.Convert USD).Amount
+            (convert amount currency USD) = (convert other.Amount other.Currency USD)
 
     override this.Equals obj =
         match obj with
@@ -41,23 +45,22 @@ type Money =
         | _ -> invalidArg "obj" "not a Money"
 
     override this.GetHashCode () =
-        hash (this.Convert USD).Amount
+        hash (convert amount currency USD)
 
-    static member (*) (m: Money, factor: decimal) : Money =
-        { m with Amount = m.Amount * factor }
-
-    static member (*) (factor: decimal, m: Money) : Money =
-        m * factor
+    static member (*) (m: Money, factor: decimal) : Money = Money (factor * m.Amount, m.Currency)
+    static member (*) (factor: decimal, m: Money) : Money = m * factor
+    static member (*) (m: Money, factor: int) : Money = m * (decimal factor)
+    static member (*) (factor: int, m: Money) : Money = m * (decimal factor)
 
     static member (+) (m1: Money, m2: Money) =
         if m1.Currency <> m2.Currency
-        then { Amount = (m1.Convert USD).Amount + (m2.Convert USD).Amount; Currency = USD }
-        else { m1 with Amount = m1.Amount + m2.Amount }
+        then m1.Convert USD + m2.Convert USD
+        else Money (m1.Amount + m2.Amount, m1.Currency)
 
     static member (-) (m1: Money, m2: Money) =
         if m1.Currency <> m2.Currency
-        then { Amount = (m1.Convert USD).Amount - (m2.Convert USD).Amount; Currency = USD }
-        else { m1 with Amount = m1.Amount - m2.Amount }
+        then m1.Convert USD - m2.Convert USD
+        else Money (m1.Amount - m2.Amount, m1.Currency)
 
     override this.ToString () = 
-        sprintf "%A %A" this.Amount this.Currency
+        sprintf "%A %A" amount currency
