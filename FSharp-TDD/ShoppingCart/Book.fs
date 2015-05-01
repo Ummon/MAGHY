@@ -16,9 +16,9 @@ type ISBN13 (str: string) =
             else
                 let checksum =
                     data
-                    |> Array.mapi (fun i n -> (if i % 2 = 0 then 1I else 3I), n)
-                    |> Array.fold (fun result (factor, n) -> result + factor * (bigint (int n))) 0I
-                checksum % 10I = 0I
+                    |> Array.mapi (fun i n -> (if i % 2 = 0 then 1 else 3), n)
+                    |> Array.fold (fun result (factor, n) -> result + factor * (int n)) 0
+                checksum % 10 = 0
     do
         if not isValid then raise InvalidISBNString
 
