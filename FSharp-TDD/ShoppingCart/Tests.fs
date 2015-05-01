@@ -28,6 +28,11 @@ type ``Currency`` () =
         USD_XBT_rate <- 0.005M
 
     [<Test>]
+    member this.``Printing`` () =
+        (Money (42, USD)).ToString () |> should equal "42 USD"
+        (Money (42.33M, USD)).ToString () |> should equal "42.33 USD"
+
+    [<Test>]
     member this.``Equality`` () = 
         Money (12, USD) |> should equal (Money (10.8M, CHF))
         Money (12, USD) |> should not' (equal (Money (12, CHF)))

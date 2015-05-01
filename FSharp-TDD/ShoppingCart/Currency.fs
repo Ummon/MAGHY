@@ -15,7 +15,6 @@ let convert amount fromCurrency toCurrency =
     | XBT, USD -> amount / USD_XBT_rate
     | _ -> amount
 
-//[<CustomComparison; CustomEquality>]
 type Money (amount : decimal, currency : Currency) = 
     let convertTo toCurrency =
         convert amount currency toCurrency
@@ -33,19 +32,19 @@ type Money (amount : decimal, currency : Currency) =
         member this.CompareTo obj =
             match obj with
             | :? Money as other -> (this :> IComparable<_>).CompareTo other
-            | _ -> invalidArg "obj" "not a Money"
+            | _ -> invalidArg "obj" "not a Money object"
 
     interface IEquatable<Money> with
         member this.Equals other =
-            (convert amount currency USD) = (convert other.Amount other.Currency USD)
+            convertTo USD = convert other.Amount other.Currency USD
 
     override this.Equals obj =
         match obj with
         | :? Money as other -> (this :> IEquatable<_>).Equals other
-        | _ -> invalidArg "obj" "not a Money"
+        | _ -> invalidArg "obj" "not a Money object"
 
     override this.GetHashCode () =
-        hash (convert amount currency USD)
+        hash (convertTo USD)
 
     static member (*) (m: Money, factor: decimal) : Money = Money (factor * m.Amount, m.Currency)
     static member (*) (factor: decimal, m: Money) : Money = m * factor
@@ -63,4 +62,4 @@ type Money (amount : decimal, currency : Currency) =
         else Money (m1.Amount - m2.Amount, m1.Currency)
 
     override this.ToString () = 
-        sprintf "%A %A" amount currency
+        sprintf "%O %A" amount currency
