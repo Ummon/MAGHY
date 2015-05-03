@@ -25,8 +25,7 @@ type Money (amount : decimal, currency : Currency) =
     member this.Convert toCurrency = Money (convertTo toCurrency, toCurrency)
 
     member this.Round (nbDecimal: int)  =
-        let mul = decimal(Math.Pow(10.0, float(nbDecimal)))
-        Money (Math.Round (amount * mul) / mul, currency)
+        Money (Math.Round (amount, nbDecimal), currency)
 
     interface IComparable<Money> with
         member this.CompareTo other =

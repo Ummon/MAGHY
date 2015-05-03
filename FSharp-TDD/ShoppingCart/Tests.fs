@@ -43,6 +43,13 @@ type ``Currency`` () =
         (Money (42.33M, USD)).ToString () |> should equal "42.33 USD"
 
     [<Test>]
+    member this.``Rounding`` () =
+        (Money (42, USD)).Round 2 |> should equal (Money (42, USD))
+        (Money (42.78M, USD)).Round 2 |> should equal (Money (42.78M, USD))
+        (Money (42.78M, USD)).Round 1 |> should equal (Money (42.8M, USD))
+        (Money (42.78M, USD)).Round 0 |> should equal (Money (43M, USD))
+
+    [<Test>]
     member this.``Equality`` () = 
         Money (12, USD) |> should equal (Money (10.8M, CHF))
         Money (12, USD) |> should not' (equal (Money (12, CHF)))
