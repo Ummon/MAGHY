@@ -159,6 +159,12 @@ type ``Shopping cart`` () =
         cart2.Amount |> should equal (Money (49.9M, USD))
 
     [<Test>]
+    member this.``The total amount of a given cart should be rounded by two decimals`` () =
+        let book = Book ("Test", "Paul A.", 1983, ISBN13 "9782266252584", Money (16, CHF))
+        let cart = (Cart.Create.Add book).Add book1
+        cart.Amount |> should equal (Money (37.68M, USD))
+
+    [<Test>]
     member this.``We should be able to paid a non-empty cart with the right amount in any currency`` () =
         let cart = ((Cart.Create.Add book1).Add book2).Add book3
         (cart.Paid (Money (49.9M, USD))).AmountPaid |> should equal (Money (49.9M, USD))

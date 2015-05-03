@@ -1,5 +1,6 @@
 ﻿namespace ShoppingCart
 
+open System
 open Currency
 
 exception WrongAmountToPaidWith
@@ -45,8 +46,8 @@ type Cart =
         let amount = List.map (fun (b : Book) -> b.Price) >> List.reduce (+)
         match this with
         | Empty -> Money (0, USD)
-        | Active books -> amount books
-        | PaidFor (books, _) -> amount books
+        | Active books -> (amount books).Round 2
+        | PaidFor (books, _) -> (amount books).Round 2
 
     member this.Paid (amount : Money) : Cart =
         match this with
