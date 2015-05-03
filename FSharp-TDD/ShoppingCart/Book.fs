@@ -24,3 +24,20 @@ type ISBN13 (str: string) =
 
     override this.ToString () =
         String (data |> Array.map (fun n -> (n.ToString ()).[0]))
+
+exception InvalidBookData of string
+
+type Book (title: string, author : string, year : int, ISBN13 : ISBN13, price : Currency.Money) =
+    do
+        if author = "" then raise <| InvalidBookData "Author is empty"
+        if author = null then raise <| InvalidBookData "Author is null"
+        if title = "" then raise <| InvalidBookData "Title is empty"
+        if title = null then raise <| InvalidBookData "Title is null"
+        if price.Amount = 0M then raise <| InvalidBookData "Price is 0" 
+        if price.Amount < 0M then raise <| InvalidBookData "Price is less than 0"
+    member this.Title = title
+    member this.Author = author
+    member this.Year = year
+    member this.ISBN13 = ISBN13
+    member this.Price = price
+
