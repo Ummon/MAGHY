@@ -9,14 +9,20 @@ open Currency
 
 [<TestFixture>]
 type ``ISBN-13`` () =
+    let validISBN = "9781784391232"
+    let invalidISBN = "9781784391233"
+
     [<Test>]
     member this.``Creating an ISBN from a correct string should be OK`` () =
-        let validISBN = "9781784391232"
         (ISBN13 validISBN).ToString () |> should equal validISBN
 
     [<Test>]
+    member this.``Two ISBN objects with the same ISBN should be equal`` () = 
+        ISBN13 validISBN |> should equal (ISBN13 validISBN)
+
+    [<Test>]
     member this.``Trying to create an ISBN from an incorrect number should raise an exception`` () =
-        (fun () -> ISBN13 "9781784391233" |> ignore) |> should throw typeof<InvalidISBNString>
+        (fun () -> ISBN13 invalidISBN |> ignore) |> should throw typeof<InvalidISBNString>
 
     [<Test>]
     member this.``Trying to create an ISBN from an empty string should raise an exception`` () =
@@ -84,6 +90,12 @@ type ``Books`` () =
         book.Year |> should equal year
         book.ISBN13 |> should equal ISBN
         book.Price |> should equal price
+
+    [<Test>]
+    member this.``Two book objects with the same ISBN should be equal`` () =
+        let book1 = Book (title, author, year, ISBN, price)
+        let book2 = Book (title, author, year, ISBN, price)
+        book1 |> should equal book2
 
     [<Test>]
     member this.``Create a book with an empty title should raise an exception`` () = 
