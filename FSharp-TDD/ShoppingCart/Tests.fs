@@ -127,9 +127,6 @@ type ``Shopping cart`` () =
         let cartWithOneBook = emptyCart.Add book1
         cartWithOneBook.Size |> should equal 1
 
-    //[<Test>]
-    //member this.``We shouldn't be able to add an element to a paid cart`` () =
-
     [<Test>] 
     member this.``We should be able to enumerate all items in a cart`` () =
         let cart = (Cart.Create.Add book1).Add book2

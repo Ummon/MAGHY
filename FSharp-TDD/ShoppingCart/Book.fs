@@ -22,6 +22,20 @@ type ISBN13 (str: string) =
     do
         if not isValid then raise InvalidISBNString
 
+    member private this.Data = data
+
+    interface IEquatable<ISBN13> with
+        member this.Equals other =
+            data = other.Data
+
+    override this.Equals obj =
+        match obj with
+        | :? ISBN13 as other -> (this :> IEquatable<_>).Equals other
+        | _ -> invalidArg "obj" "not a Book object"
+
+    override this.GetHashCode () =
+        hash data
+
     override this.ToString () =
         String (data |> Array.map (fun n -> (n.ToString ()).[0]))
 
@@ -40,4 +54,17 @@ type Book (title: string, author : string, year : int, ISBN13 : ISBN13, price : 
     member this.Year = year
     member this.ISBN13 = ISBN13
     member this.Price = price
+
+    interface IEquatable<Book> with
+        member this.Equals other =
+            ISBN13 = other.ISBN13
+
+    override this.Equals obj =
+        match obj with
+        | :? Book as other -> (this :> IEquatable<_>).Equals other
+        | _ -> invalidArg "obj" "not a Book object"
+
+    override this.GetHashCode () =
+        hash ISBN13
+
 
