@@ -53,6 +53,8 @@ type Money (amount : decimal, currency : Currency) =
     static member (*) (factor: decimal, m: Money) : Money = m * factor
     static member (*) (m: Money, factor: int) : Money = m * (decimal factor)
     static member (*) (factor: int, m: Money) : Money = m * (decimal factor)
+    static member (/) (m: Money, divisor: decimal) : Money = Money (m.Amount / divisor, m.Currency)
+    static member (/) (m: Money, divisor: int) : Money = m / (decimal divisor)
 
     static member (+) (m1: Money, m2: Money) =
         if m1.Currency <> m2.Currency

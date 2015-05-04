@@ -44,35 +44,36 @@ type ``Currency`` () =
         USD_XBT_rate <- 0.005M
 
     [<Test>]
-    member this.``Printing`` () =
+    member this.``A money object should be printable`` () =
         (Money (42, USD)).ToString () |> should equal "42 USD"
         (Money (42.33M, USD)).ToString () |> should equal "42.33 USD"
 
     [<Test>]
-    member this.``Rounding`` () =
+    member this.``A money object can be rounded to any decimal`` () =
         (Money (42, USD)).Round 2 |> should equal (Money (42, USD))
         (Money (42.78M, USD)).Round 2 |> should equal (Money (42.78M, USD))
         (Money (42.78M, USD)).Round 1 |> should equal (Money (42.8M, USD))
         (Money (42.78M, USD)).Round 0 |> should equal (Money (43M, USD))
 
     [<Test>]
-    member this.``Equality`` () = 
+    member this.``A money object should be equatable to another money object although the currency isn't the same`` () = 
         Money (12, USD) |> should equal (Money (10.8M, CHF))
         Money (12, USD) |> should not' (equal (Money (12, CHF)))
 
     [<Test>]
-    member this.``Comparisons`` () =
+    member this.``A money object should be comparable to another money object`` () =
         Money (3, USD) > Money (1, USD) |> should be True
         Money (2, CHF) > Money (2, USD) |> should be True
         Money (1, XBT) <= Money (200, USD) |> should be True
         Money (1, XBT) <= Money (180, CHF) |> should be True
 
     [<Test>]
-    member this.``Matematical operations`` () =
+    member this.``Money objects can be combined with mathematical operations (+, -, *, /)`` () =
         Money (3, USD) + Money (1, USD) |> should equal (Money (4, USD))
         Money (40, USD) - Money (9, CHF) |> should equal (Money (30, USD))
         10 * Money (9, XBT) |> should equal (Money (90, XBT))
-        Money (5, USD) - Money (9, CHF) * 2M |> should equal (Money (-15, USD))
+        Money (5, XBT) / 2M |> should equal (Money (2.5M, XBT))
+        (Money (5, USD) - Money (9, CHF) * 2) / 2 |> should equal (Money (-7.5M, USD))
 
 [<TestFixture>]
 type ``Books`` () =
@@ -208,9 +209,8 @@ type ``Shopping cart`` () =
         (fun () -> paidCart.Add book3 |> ignore) |> should throw typeof<Can'tChangeAPaidCart>
 
     [<Test>]
-    member this.``We shouldn't be able to remove a book to an paid cart`` () =
+    member this.``We shouldn't be able to remove a book from a paid cart`` () =
         let cart = ((Cart.Create.Add book1).Add book2).Add book3
         let paidCart = cart.Paid (Money (49.9M, USD))
         (fun () -> paidCart.Remove book3 |> ignore) |> should throw typeof<Can'tChangeAPaidCart>
-
     
