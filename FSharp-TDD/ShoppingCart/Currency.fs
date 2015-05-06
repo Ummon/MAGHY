@@ -19,13 +19,13 @@ type Money (amount : decimal, currency : Currency) =
     let convertTo toCurrency =
         convert amount currency toCurrency
 
-    new (amount : int, currency : Currency) = Money (decimal amount, currency)
+    new (amount : int, currency : Currency) = Money(decimal amount, currency)
     member this.Amount = amount
     member this.Currency = currency
-    member this.Convert toCurrency = Money (convertTo toCurrency, toCurrency)
+    member this.Convert toCurrency = Money(convertTo toCurrency, toCurrency)
 
     member this.Round (nbDecimal: int)  =
-        Money (Math.Round (amount, nbDecimal), currency)
+        Money(Math.Round (amount, nbDecimal), currency)
 
     interface IComparable<Money> with
         member this.CompareTo other =
@@ -49,22 +49,22 @@ type Money (amount : decimal, currency : Currency) =
     override this.GetHashCode () =
         hash (convertTo USD)
 
-    static member (*) (m: Money, factor: decimal) : Money = Money (factor * m.Amount, m.Currency)
+    static member (*) (m: Money, factor: decimal) : Money = Money(factor * m.Amount, m.Currency)
     static member (*) (factor: decimal, m: Money) : Money = m * factor
     static member (*) (m: Money, factor: int) : Money = m * (decimal factor)
     static member (*) (factor: int, m: Money) : Money = m * (decimal factor)
-    static member (/) (m: Money, divisor: decimal) : Money = Money (m.Amount / divisor, m.Currency)
+    static member (/) (m: Money, divisor: decimal) : Money = Money(m.Amount / divisor, m.Currency)
     static member (/) (m: Money, divisor: int) : Money = m / (decimal divisor)
 
     static member (+) (m1: Money, m2: Money) =
         if m1.Currency <> m2.Currency
         then m1.Convert USD + m2.Convert USD
-        else Money (m1.Amount + m2.Amount, m1.Currency)
+        else Money(m1.Amount + m2.Amount, m1.Currency)
 
     static member (-) (m1: Money, m2: Money) =
         if m1.Currency <> m2.Currency
         then m1.Convert USD - m2.Convert USD
-        else Money (m1.Amount - m2.Amount, m1.Currency)
+        else Money(m1.Amount - m2.Amount, m1.Currency)
 
     override this.ToString () = 
         sprintf "%O %A" amount currency

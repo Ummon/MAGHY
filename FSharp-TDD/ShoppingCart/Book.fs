@@ -37,7 +37,7 @@ type ISBN13 (str: string) =
         hash data
 
     override this.ToString () =
-        String (data |> Array.map (fun n -> (n.ToString ()).[0]))
+        String(data |> Array.map (fun n -> (n.ToString ()).[0]))
 
 exception InvalidBookData of string
 
