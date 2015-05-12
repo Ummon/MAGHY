@@ -14,7 +14,7 @@ type ``ISBN-13`` () =
 
     [<Test>]
     member this.``Creating an ISBN from a correct string should be OK`` () =
-        ISBN13(validISBN).ToString() |> should equal validISBN
+        ISBN13(validISBN) |> string |> should equal validISBN
 
     [<Test>]
     member this.``Two ISBN objects with the same ISBN should be equal`` () = 
@@ -45,8 +45,8 @@ type ``Currency`` () =
 
     [<Test>]
     member this.``A money object should be printable`` () =
-        Money(42, USD).ToString () |> should equal "42 USD"
-        Money(42.33M, USD).ToString () |> should equal "42.33 USD"
+        Money(42, USD) |> string |> should equal "42 USD"
+        Money(42.33M, USD) |> string |> should equal "42.33 USD"
 
     [<Test>]
     member this.``A money object can be rounded to any decimal`` () =
