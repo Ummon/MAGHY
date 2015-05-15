@@ -49,6 +49,9 @@ type Money (amount : decimal, currency : Currency) =
     override this.GetHashCode () =
         hash (convertTo USD)
 
+    override this.ToString () = 
+        sprintf "%O %A" amount currency
+
     static member (*) (m: Money, factor: decimal) : Money = Money(factor * m.Amount, m.Currency)
     static member (*) (factor: decimal, m: Money) : Money = m * factor
     static member (*) (m: Money, factor: int) : Money = m * (decimal factor)
@@ -65,6 +68,3 @@ type Money (amount : decimal, currency : Currency) =
         if m1.Currency <> m2.Currency
         then m1.Convert USD - m2.Convert USD
         else Money(m1.Amount - m2.Amount, m1.Currency)
-
-    override this.ToString () = 
-        sprintf "%O %A" amount currency
