@@ -227,7 +227,7 @@
 
 
 \begin{abstract}
-Cet article à pour but de présenter les approches \emph{TDD} (\emph{test-driven development}) et \emph{pair-programming} dans le domaine du développement logiciel, de mettre en avant leurs atouts ainsi que de le inscrire dans des méthodologies de développement connues.
+Cet article à pour but de présenter les approches \emph{TDD} (\emph{test-driven development}) et \emph{pair-programming} dans le domaine du développement logiciel, de mettre en avant leurs atouts ainsi que de les inscrire dans des méthodologies de développement connues.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -243,13 +243,32 @@ TDD, test-driven development, pair-programming.
 
 \section{\emph{TDD}}
 
-\subsection{Correction de bugs}
+\subsection{Motivations}
 
+\subsection{Fonctionnement}
+
+\subsection{Bénéfices}
+
+\subsection{Correction de bugs}
 
 La correction du bug peut aussi suivre une forme s'approchant du \emph{TDD}. Lorsqu'un bug doit être corrigé, l'on va d'abord ajouter un ou plusieurs tests qui vont échoués afin de mettre en évidence le bug. Le code incriminé va ensuite être corrigé afin que le test passe. Une phase de \emph{refactoring} peut
 
 Cette approche est à la fois importante pour la documentation du bug corrigé mais également pour éviter toute régression ultérieure.
 
+
+\subsection{Intégration avec une approche agile}
+
+Les tests unitaires -> s'ajoute un processus d'intégration continue
+
+
+\section{Cas pratique}
+
+\subsection{But}
+
+Afin d'évaluer ces deux approches de manière concrète nous les avons mis en œuvre à l'aide d'un petit cas pratique. Cet exemple ne se veut en aucun cas exhaustive et ne montre qu'une introduction échelle réduite.
+
+
+\subsection{Outils utilisés}
 
 
 % An example of a floating figure using the graphicx package.
@@ -337,7 +356,9 @@ Cette approche est à la fois importante pour la documentation du bug corrigé m
 
 
 \section{Conclusion}
-The conclusion goes here.
+
+
+
 
 
 
