@@ -247,26 +247,22 @@ TDD, test-driven development, pair-programming.
 
 Lorsqu'un développeur se met au travail et choisi de réaliser une nouvelle fonctionnalité d'un logiciel il va, en premier lieu, réfléchir comment celle-ci va être implémentée et quels changements il va devoir réaliser dans la structure actuelle du programme. Le développeur va ensuite ajouter ou modifier des types et implémenter les fonctions nécessaires pour répondre au spécifications. Puis, finalement, il va faire en sorte que le tout compile et il va lancer l'application afin de tester que ce qu'il vient de réaliser fonctionne bien.
 
-Les problèmes de cette façon de faire sont multiples. Tout d'abord il y a de forte chance que la personne se soit écarté des spécifications ou ait voulu trop en faire en créant plus de types que nécessaire ou trop de couches d'abstraction. De plus, les tests n'étant effectués qu'à la fin de l'implémentation, il y fort à parier que le résultat ne corresponde pas complètement aux spécifications et que des bugs subsistent. Si certains de ces derniers sont liés au design alors il est probable que des modifications assez importantes vont devoir être réalisées. Si les tests ne sont que manuels, il n'y aura rien qui facilite la validation du fonctionnement des fonctionnalités dans le futur.
+Les problèmes de cette façon de faire sont multiples. Tout d'abord il y a de forte chance que la personne se soit écartée des spécifications ou ait voulu trop en faire en créant plus de types que nécessaire ou trop de couches d'abstraction. De plus, les tests n'étant effectués qu'à la fin de l'implémentation, il y fort à parier que le résultat ne corresponde pas complètement aux spécifications et que des bugs subsistent. Si certains de ces derniers sont liés au design alors il est probable que des modifications assez importantes vont devoir être réalisées. Si les tests ne sont que manuels, il n'y aura rien qui facilite la validation du fonctionnement des fonctionnalités dans le futur.
 
-Pour palier à ces problèmes le développeur peut adopter l'approche \emph{TDD} qui consiste à d'abord écrire un test puis à écrire l'implémentation associée.
-
-
-
-* Pas de tests
-
-
-* implémenter ce qui est vraiment nécessaire, ne pas se perdre
-* définir en premier ce que l'on veut (le quoi) et pas comment on va le réaliser (le comment)
+Pour palier à ces problèmes le développeur peut adopter l'approche \emph{TDD} qui consiste à, dans un premier temps, écrire un test puis, ensuite, à écrire l'implémentation associée. Cela à pour objectif de décrire ce que l'on veut avant de réaliser l'implémentation y répondant exactement. De cette manière l'on écrit uniquement le code nécessaire à faire passer le test et pas plus.
 
 
 \subsection{Fonctionnement}
 
 
 
+
+
 * Écrire un test -> il doit être rouge
 * Écrire l'implémentation minimum -> le test passe au vert
 * Refactorer l'implémentation 
+* Au fure et à mesure que des tests vont être écrit d'autres vont apparaître dans l'esprit du développeur, 
+* Processus organique
 
 
 \subsection{Bénéfices}
@@ -292,17 +288,6 @@ Cette approche est à la fois importante pour la documentation du bug corrigé m
 \subsection{Intégration avec une approche agile}
 
 Les tests unitaires -> s'ajoute un processus d'intégration continue
-
-
-\section{Cas pratique}
-
-\subsection{But}
-
-Afin d'évaluer ces deux approches de manière concrète nous les avons mis en œuvre à l'aide d'un petit cas pratique. Cet exemple ne se veut en aucun cas exhaustive et ne montre qu'une introduction échelle réduite.
-
-
-\subsection{Outils utilisés}
-
 
 
 
