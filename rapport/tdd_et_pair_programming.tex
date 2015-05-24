@@ -11,224 +11,50 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{multicol}
-
+\usepackage{color}
+\usepackage{listings}
 \usepackage{cite}
 
 \usepackage[pdftex]{graphicx}
 \graphicspath{./img/}
 \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 
-
-% *** ALIGNMENT PACKAGES ***
-%
 \usepackage{array}
-% Frank Mittelbach's and David Carlisle's array.sty patches and improves
-% the standard LaTeX2e array and tabular environments to provide better
-% appearance and additional user controls. As the default LaTeX2e table
-% generation code is lacking to the point of almost being broken with
-% respect to the quality of the end results, all users are strongly
-% advised to use an enhanced (at the very least that provided by array.sty)
-% set of table tools. array.sty is already installed on most systems. The
-% latest version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/tools/
-
-
 \usepackage{mdwmath}
 \usepackage{mdwtab}
-% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
-% especially mdwmath.sty and mdwtab.sty which are used to format equations
-% and tables, respectively. The MDWtools set is already installed on most
-% LaTeX systems. The lastest version and documentation is available at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
-
-
-% IEEEtran contains the IEEEeqnarray family of commands that can be used to
-% generate multiline equations as well as matrices, tables, etc., of high
-% quality.
-
-
 \usepackage{eqparbox}
-% Also of notable interest is Scott Pakin's eqparbox package for creating
-% (automatically sized) equal width boxes - aka "natural width parboxes".
-% Available at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
-
-
-
-% *** FLOAT PACKAGES ***
-%
 \usepackage{fixltx2e}
-% fixltx2e, the successor to the earlier fix2col.sty, was written by
-% Frank Mittelbach and David Carlisle. This package corrects a few problems
-% in the LaTeX2e kernel, the most notable of which is that in current
-% LaTeX2e releases, the ordering of single and double column floats is not
-% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
-% single column figure to be placed prior to an earlier double column
-% figure. The latest version and documentation can be found at:
-% http://www.ctan.org/tex-archive/macros/latex/base/
-
-
-
-%\usepackage{stfloats}
-% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
-% the ability to do double column floats at the bottom of the page as well
-% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
-% LaTeX2e). It also provides a command:
-%\fnbelowfloat
-% to enable the placement of footnotes below bottom floats (the standard
-% LaTeX2e kernel puts them above bottom floats). This is an invasive package
-% which rewrites many portions of the LaTeX2e float routines. It may not work
-% with other packages that modify the LaTeX2e float routines. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
-% Documentation is contained in the stfloats.sty comments as well as in the
-% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
-% does not allow \baselineskip to stretch. Authors submitting work to the
-% IEEE should note that IEEE rarely uses double column equations and
-% that authors should try to avoid such use. Do not be tempted to use the
-% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
-% not format its papers in such ways.
-
-
-%\ifCLASSOPTIONcaptionsoff
-%  \usepackage[nomarkers]{endfloat}
-% \let\MYoriglatexcaption\caption
-% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
-%\fi
-% endfloat.sty was written by James Darrell McCauley and Jeff Goldberg.
-% This package may be useful when used in conjunction with IEEEtran.cls'
-% captionsoff option. Some IEEE journals/societies require that submissions
-% have lists of figures/tables at the end of the paper and that
-% figures/tables without any captions are placed on a page by themselves at
-% the end of the document. If needed, the draftcls IEEEtran class option or
-% \CLASSINPUTbaselinestretch interface can be used to increase the line
-% spacing as well. Be sure and use the nomarkers option of endfloat to
-% prevent endfloat from "marking" where the figures would have been placed
-% in the text. The two hack lines of code above are a slight modification of
-% that suggested by in the endfloat docs (section 8.3.1) to ensure that
-% the full captions always appear in the list of figures/tables - even if
-% the user used the short optional argument of \caption[]{}.
-% IEEE papers do not typically make use of \caption[]'s optional argument,
-% so this should not be an issue. A similar trick can be used to disable
-% captions of packages such as subfig.sty that lack options to turn off
-% the subcaptions:
-% For subfig.sty:
-% \let\MYorigsubfloat\subfloat
-% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
-% For subfigure.sty:
-% \let\MYorigsubfigure\subfigure
-% \renewcommand{\subfigure}[2][\relax]{\MYorigsubfigure[]{#2}}
-% However, the above trick will not work if both optional arguments of
-% the \subfloat/subfig command are used. Furthermore, there needs to be a
-% description of each subfigure *somewhere* and endfloat does not add
-% subfigure captions to its list of figures. Thus, the best approach is to
-% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
-% and instead reference/explain all the subfigures within the main caption.
-% The latest version of endfloat.sty and its documentation can obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
-%
-% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
-% later in the document, say, to conditionally put the References on a 
-% page by themselves.
-
-
-
-
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
 \usepackage{url}
-% url.sty was written by Donald Arseneau. It provides better support for
-% handling and breaking URLs. url.sty is already installed on most LaTeX
-% systems. The latest version can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
-% Read the url.sty source comments for usage information. Basically,
-% \url{my_url_here}.
 
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{turqusnumbers}{rgb}{0.17,0.57,0.69}
+\definecolor{redstrings}{rgb}{0.5,0,0}
 
-
-
-
-% *** Do not adjust lengths that control margins, column widths, etc. ***
-% *** Do not use packages that alter fonts (such as pslatex).         ***
-% There should be no need to do such things with IEEEtran.cls V1.6 and later.
-% (Unless specifically asked to do so by the journal or conference you plan
-% to submit to, of course. )
-
-
-% correct bad hyphenation here
-% \hyphenation{op-tical net-works semi-conduc-tor}
-
+\lstdefinelanguage{FSharp}
+                {morekeywords={let, new, match, with, rec, open, module, namespace, type, of, member, and, for, in, do, begin, end, fun, function, try, mutable, if, then, else},
+    keywordstyle=\color{bluekeywords},
+    sensitive=false,
+    morecomment=[l][\color{greencomments}]{///},
+    morecomment=[l][\color{greencomments}]{//},
+    morecomment=[s][\color{greencomments}]{{(*}{*)}},
+    morestring=[b]",
+    stringstyle=\color{redstrings}
+    }
 
 \begin{document}
-%
-% paper title
-% can use linebreaks \\ within to get better formatting as desired
+
 \title{Test-driven developement et pair programming}
-%
-%
-% author names and IEEE memberships
-% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
-% a structure at a ~ so this keeps an author's name from being broken across
-% two lines.
-% use \thanks{} to gain access to the first footnote area
-% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
-% was not built to handle multiple paragraphs
-%
 
 \author{Étienne~Frank, Grégory Burri}
 
-% note the % following the last \IEEEmembership and also \thanks - 
-% these prevent an unwanted space from occurring between the last author name
-% and the end of the author line. i.e., if you had this:
-% 
-% \author{....lastname \thanks{...} \thanks{...} }
-%                     ^------------^------------^----Do not want these spaces!
-%
-% a space would be appended to the last name and could cause every name on that
-% line to be shifted left slightly. This is one of those "LaTeX things". For
-% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
-% "AB" then you have to do: "\textbf{A}\textbf{B}"
-% \thanks is no different in this regard, so shield the last } of each \thanks
-% that ends a line with a % and do not let a space in before the next \thanks.
-% Spaces after \IEEEmembership other than the last one are OK (and needed) as
-% you are supposed to have spaces between the names. For what it is worth,
-% this is a minor point as most people would not even notice if the said evil
-% space somehow managed to creep in.
-
-
-
-% The paper headers
-\markboth{Test-driven development et pair programming}%
+\markboth{Test-driven development et pair programming}
 {Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
 
-
-
-
-% If you want to put a publisher's ID mark on the page you can do it like
-% this:
-%\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark.
-
-
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
-
-
-% make the title area
 \maketitle
 
-
 \begin{abstract}
-Cet article à pour but de présenter les approches \emph{TDD} (\emph{test-driven development}) et \emph{pair-programming} dans le domaine du développement logiciel, de mettre en avant leurs atouts ainsi que de les inscrire dans des méthodologies de développement connues.
+%Cet article à pour but de présenter les approches \emph{TDD} (\emph{test-driven development}) et \emph{pair-programming} dans le domaine du développement logiciel, de mettre en avant leurs atouts ainsi que de les inscrire dans des méthodologies de développement connues.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -249,33 +75,35 @@ Lorsqu'un développeur se met au travail et choisi de réaliser une nouvelle fon
 
 Les problèmes de cette façon de faire sont multiples. Tout d'abord il y a de forte chance que la personne se soit écartée des spécifications ou ait voulu trop en faire en créant plus de types que nécessaire ou trop de couches d'abstraction. De plus, les tests n'étant effectués qu'à la fin de l'implémentation, il y fort à parier que le résultat ne corresponde pas complètement aux spécifications et que des bugs subsistent. Si certains de ces derniers sont liés au design alors il est probable que des modifications assez importantes vont devoir être réalisées. Si les tests ne sont que manuels, il n'y aura rien qui facilite la validation du fonctionnement des fonctionnalités dans le futur.
 
-Pour palier à ces problèmes le développeur peut adopter l'approche \emph{TDD} qui consiste à, dans un premier temps, écrire un test puis, ensuite, à écrire l'implémentation associée. Cela à pour objectif de décrire ce que l'on veut avant de réaliser l'implémentation y répondant exactement. De cette manière l'on écrit uniquement le code nécessaire à faire passer le test et pas plus.
+Pour palier à ces problèmes le développeur peut adopter l'approche \emph{TDD} qui consiste à, dans un premier temps, écrire un test puis, ensuite, à écrire l'implémentation associée. Cela à pour objectif de décrire ce que l'on veut avant de réaliser l'implémentation y répondant exactement. De cette manière uniquement le code nécessaire à faire passer le test est écrit et pas plus.
 
 
 \subsection{Fonctionnement}
 
 
-
-
-
+* Faire une liste des choses à tester, cette liste va évoluer
 * Écrire un test -> il doit être rouge
 * Écrire l'implémentation minimum -> le test passe au vert
+* Ne pas tester l'implémentation mais l'API (interface)
 * Refactorer l'implémentation 
-* Au fure et à mesure que des tests vont être écrit d'autres vont apparaître dans l'esprit du développeur, 
-* Processus organique
+* Processus organique, itératif, 
+** Au fure et à mesure que des tests vont être écrit d'autres vont apparaître dans l'esprit du développeur, 
+* Ne pas accèder au réseau, système de fichiers ni DB
+** "Mock object", si possible les réduire au maximum
+* Tests isolés, possibilité de ne lancer qu'un seul sub-set
 
 
 \subsection{Bénéfices}
 
 
-* Documentation de l'utilisation de l'API
-* Meilleur design
+* Aide à atteindre un meilleur design, plus modulaire, plus testable
+* Documentation de manière systèmatique de l'utilisation de l'API
 * Confiance (au moment d'écrire, par rapport au code déjà écrit)
 * Oblige à avoir des tests pour toutes les fonctionnalités
-* Meilleure qualité
+* Meilleure qualité de manière générale
+* Approche pas forcément toujours nécessaire, dépend de l'utilisation du code et de la qualité souhaitée
 
-* Approche pas forcément toujours nécessaire
-
+* Cohesion vs indpendant (testable)
 
 
 \subsection{Correction de bugs}
@@ -328,6 +156,7 @@ est fait plus rapidement et les bugs peuvent couter cher. Donc si on regarde non
 développement, mais le cout du programme une fois livré, on remarque que le pair programming est
 bénéfique. Voici un tableau résumant les couts :
 
+\begin{figure*}[!t]
 \begin{center}
     \begin{tabular}{| l | l | l|}
     \hline
@@ -357,6 +186,7 @@ bénéfique. Voici un tableau résumant les couts :
     Difference & & \$20,572 \\ \hline
     \end{tabular}
 \end{center}
+\end{figure*}
 
 Donc dans ce cas on voit qu’il est bénéfique d’utiliser le pair programming. Il faut retenir que cet
 exemple utilise toujours des moyennes prisent dans des statistiques américaines. Si par exemple
@@ -385,9 +215,9 @@ La pair Senior-Junior est celles où le transfert de savoir est la plus importan
 de faire ce type de pair, alors on peut faire les deux restantes. Mais il ne faut pas oublier qu’un junior
 peut apprendre à un senior. Parfois certain senior rouillent.
 
-\subsection{Varation des pairs}
+\subsection{Variation des pairs}
 
-blog.pivotal.io/pivotal-labs/labs/pair-programming-matrix
+% blog.pivotal.io/pivotal-labs/labs/pair-programming-matrix
 Il est bien de varier les paires. Faire le maximum de combinaisons possibles avec chaque membre de
 l’équipe. Cela optimise le transfert de savoir de toute l’équipe. Mais souvent avec le temps il y a des
 affinités qui se créer et on va préférer un collègue plutôt qu’un autre. Une manière de résoudre ce
@@ -437,6 +267,7 @@ Pour ce qui est du partage d’écran nous avons trois choix possible : partager
 contrôle, partager juste le bureau et partager juste l’IDE. Les solutions sont de la plus gourmande en
 connexion à la moins gourmande.
 
+\begin{figure*}[!t]
 \begin{center}
     \begin{tabular}{| l | l | l|}
     \hline
@@ -450,11 +281,11 @@ connexion à la moins gourmande.
     \hline
     \end{tabular}
 \end{center}
+\end{figure*}
 
 \subsection{Problème des métriques}
-https://github.com/therubymug/hitch
-
-https://github.com/glg/git-pairing
+% https://github.com/therubymug/hitch
+% https://github.com/glg/git-pairing
 
 Le pair programming pose des problèmes lorsqu’on a un environnement qui calcule des métriques.
 Souvent ces derniers ne sont pas adaptés pour des pairs. Il existe néant moins des programmes
@@ -464,7 +295,7 @@ attentif si jamais il y a des bugs.
 
 \subsection{Pair programming dans l’éducation}
 
-http://www.realsearchgroup.org/pairlearning/index.php
+% http://www.realsearchgroup.org/pairlearning/index.php
 
 Deux universités ont fait des statistiques sur leurs étudiants qui commencer dans leurs études. La
 North Carolina State University (NCSU) et la University of California Santa Cruz (UCSC). L’étude
@@ -477,7 +308,7 @@ Il y a eu plus d’étudiants qui réussissaient leur examen de première avec u
 maintenir voir à améliorer leurs moyennes du cours de programmation de l’année précédente. 77\%
 des étudiants qui avaient fait du pair programming choisissaient en deuxième année la suite du cours(contre 62\%). Et avaient tendences à mieux réussir le cours de deuxième année que ceux qui avait
 programmé seul. Et finalement plus d’étudiants choisissaient l’informatique comme matière
-principale ( NCSU: 57\% vs. 34\% ; UCSC : 25\% vs. 11\% ).
+principale ( NCSU: 57~\% vs. 34~\% ; UCSC : 25~\% vs. 11~\% ).
 
 Finalement le mythe que les professeurs peuvent avoir sur « seulement un seul étudiant apprend
 lorsqu’il y a du pair programming » semble être faux. Les Etats-Unis manquent de programmeurs, et
@@ -497,113 +328,47 @@ Afin d'évaluer ces deux approches de manière concrète nous les avons mis en �
 
 \subsection{Outils utilisés}
 
-
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation Results}
-%\label{fig_sim}
-%\end{figure}
-
-% Note that IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
+\subsection{blah}
 
 
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command, the
-% \label for the overall figure must come after \caption.
-% \hfil must be used as a separator to get equal spacing.
-% The subfigure.sty package works much the same way, except \subfigure is
-% used instead of \subfloat.
-%
-%\begin{figure*}[!t]
-%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
-%\label{fig_second_case}}}
-%\caption{Simulation results}
-%\label{fig_sim}
-%\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
+\begin{figure*}[!t]
+\begin{lstlisting}[language=FSharp, frame=single, basicstyle=\ttfamily\scriptsize]
+[<TestFixture>]
+type ``ISBN-13`` () =
+    let validISBN = "9781784391232"
+    let invalidISBN = "9781784391233"
 
+    [<Test>]
+    member this.``Creating an ISBN from a correct string should be OK`` () =
+        ISBN13 validISBN |> string |> should equal validISBN
 
-% An example of a floating table. Note that, for IEEE style tables, the 
-% \caption command should come BEFORE the table. Table text will default to
-% \footnotesize as IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
+    [<Test>]
+    member this.``Two ISBN objects with the same ISBN should be equal`` () = 
+        ISBN13 validISBN |> should equal (ISBN13 validISBN)
 
+    [<Test>]
+    member this.``Trying to create an ISBN from an incorrect number should raise an exception`` () =
+        (fun () -> ISBN13 invalidISBN |> ignore) |> should throw typeof<InvalidISBNString>
 
-% Note that IEEE does not put floats in the very first column - or typically
-% anywhere on the first page for that matter. Also, in-text middle ("here")
-% positioning is not used. Most IEEE journals use top floats exclusively.
-% Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
-% floats. This can be corrected via the \fnbelowfloat command of the
-% stfloats package.
+    [<Test>]
+    member this.``Trying to create an ISBN from an empty string should raise an exception`` () =
+        (fun () -> ISBN13 "" |> ignore) |> should throw typeof<InvalidISBNString>
+
+    [<Test>]
+    member this.``Trying to create an ISBN from a non-digits string should raise an exception`` () = 
+        (fun () -> ISBN13 "abc;$" |> ignore) |> should throw typeof<InvalidISBNString>
+
+    [<Test>]
+    member this.``Trying to create an ISBN from a null string should raise an exception`` () =
+        (fun () -> ISBN13 null |> ignore) |> should throw typeof<InvalidISBNString>
+\end{lstlisting}
+\end{figure*}
 
 
 
 \section{Conclusion}
 
 
-
-
-
-
-
-
-% if have a single appendix:
-%\appendix[Proof of the Zonklar Equations]
-% or
-%\appendix  % for no appendix heading
-% do not use \section anymore after \appendix, only \section*
-% is possibly needed
-
-% use appendices with more than one appendix
-% then use \section to start each appendix
-% you must declare a \section before using any
-% \subsection or using \label (\appendices by itself
-% starts a section numbered zero.)
-%
 
 
 \appendices
@@ -630,29 +395,6 @@ The authors would like to thank...
 \fi
 
 
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-%\IEEEtriggeratref{8}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
-
-% references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 
 \bibitem{IEEEhowto:kopka}
@@ -661,16 +403,6 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 
 \end{thebibliography}
 
-% biography section
-% 
-% If you have an EPS/PDF photo (graphicx package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
-% the LaTeX parser from getting confused when it sees the complicated
-% \includegraphics command within an optional argument. (You could create
-% your own custom macro containing the \includegraphics command to make things
-% simpler here.)
-%\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
-% or if you just want to reserve a space for a photo:
 
 \begin{IEEEbiography}{Michael Shell}
 Biography text here.
@@ -688,19 +420,6 @@ Biography text here.
 \begin{IEEEbiographynophoto}{Jane Doe}
 Biography text here.
 \end{IEEEbiographynophoto}
-
-% You can push biographies down or up by placing
-% a \vfill before or after them. The appropriate
-% use of \vfill depends on what kind of text is
-% on the last page and whether or not the columns
-% are being equalized.
-
-%\vfill
-
-% Can be used to pull up biographies so that the bottom of the last one
-% is flush with the other column.
-%\enlargethispage{-5in}
-
 
 
 % that's all folks
