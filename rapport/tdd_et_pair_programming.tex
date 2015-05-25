@@ -4,7 +4,7 @@
 %% and
 %% http://www.ieee.org/
 
-\documentclass[journal, a4paper]{IEEEtran}
+\documentclass[journal, a4paper, frenchb]{IEEEtran}
 
 \usepackage[francais]{babel}
 \usepackage[utf8]{inputenc}
@@ -25,6 +25,7 @@
 \usepackage{eqparbox}
 \usepackage{fixltx2e}
 \usepackage{url}
+% \usepackage{stfloats}
 
 \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
 \definecolor{greencomments}{rgb}{0,0.5,0}
@@ -41,6 +42,8 @@
     morestring=[b]",
     stringstyle=\color{redstrings}
     }
+    
+\def\IEEEkeywordsname{Mots-clefs}
 
 \begin{document}
 
@@ -54,7 +57,7 @@
 \maketitle
 
 \begin{abstract}
-%Cet article à pour but de présenter les approches \emph{TDD} (\emph{test-driven development}) et \emph{pair-programming} dans le domaine du développement logiciel, de mettre en avant leurs atouts ainsi que de les inscrire dans des méthodologies de développement connues.
+Cet article à pour but de présenter les approches \emph{TDD} (\emph{test-driven development}) et \emph{pair-programming} dans le domaine du développement logiciel, de mettre en avant leurs atouts ainsi que de les inscrire dans des méthodologies de développement connues.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -80,17 +83,23 @@ Pour palier à ces problèmes le développeur peut adopter l'approche \emph{TDD}
 
 \subsection{Fonctionnement}
 
+Voici les trois étapes du processus.
 
-* Faire une liste des choses à tester, cette liste va évoluer
-* Écrire un test -> il doit être rouge
-* Écrire l'implémentation minimum -> le test passe au vert
-* Ne pas tester l'implémentation mais l'API (interface)
-* Refactorer l'implémentation 
-* Processus organique, itératif, 
-** Au fure et à mesure que des tests vont être écrit d'autres vont apparaître dans l'esprit du développeur, 
-* Ne pas accèder au réseau, système de fichiers ni DB
-** "Mock object", si possible les réduire au maximum
-* Tests isolés, possibilité de ne lancer qu'un seul sub-set
+\begin{enumerate}
+   \item Écriture d'un test unitaire, le test doit échouer (être marqué rouge).
+   \item Réalisation d'une implémentation minimale afin de faire passer le test au vert.
+   \item \emph{Refactorer} l'implémentation tout en maintenant le test au vert.
+\end{enumerate}
+
+Lors de l'écriture du test il faut se focaliser sur l'interface et non anticiper l'implémentation. Il est également important, qu'à la première étape, le test ne passe pas afin d'être sûr que ce que l'on veut tester n'existe pas ou ne fonctionne pas encore.
+
+Ce processus est itératif et va être réitéré pour chaque test jusqu'à aboutir à une implémentation complète. Il est possible que des tests écrits précédemment doivent être modifiés ou deviennent obsolètes au file de la réalisation des fonctionnalités, dans ces cas il ne faudra pas hésiter à les modifier ou à les supprimer.
+
+Afin d'aider le développeur à structurer ce processus il est fortement conseillé de garder à jour une liste des éléments à tester (\emph{todo list}). Avant d'écrire le premier test, cette liste va être peupler avec tout ce que l'on pense pertinent à tester, puis va être mise à jour après chaque test.
+
+Le code exécuté durant les tests ne doit réaliser aucune entrées-sorties comme, par exemple, accéder au système de fichier au réseau ou à une base de données. Cela a pour but d'obtenir des tests s'exécutant rapidement et ne dépendant pas de données externes. Afin de simuler une ressource externe il est nécessaire d'utiliser des objets \emph{mocks} qui vont posséder un comportement spécifique à ce que l'on souhaite tester et qui vont vérifier comment la ressource est accédée.
+
+
 
 
 \subsection{Bénéfices}
@@ -156,8 +165,10 @@ est fait plus rapidement et les bugs peuvent couter cher. Donc si on regarde non
 développement, mais le cout du programme une fois livré, on remarque que le pair programming est
 bénéfique. Voici un tableau résumant les couts :
 
-\begin{figure*}[!t]
+\begin{table*}[!t]
 \begin{center}
+    \caption{An Example of a Table}
+    \label{table_example}
     \begin{tabular}{| l | l | l|}
     \hline
     & \textbf{Individual} & \textbf{Collaborators}  \\ \hline
@@ -186,7 +197,7 @@ bénéfique. Voici un tableau résumant les couts :
     Difference & & \$20,572 \\ \hline
     \end{tabular}
 \end{center}
-\end{figure*}
+\end{table*}
 
 Donc dans ce cas on voit qu’il est bénéfique d’utiliser le pair programming. Il faut retenir que cet
 exemple utilise toujours des moyennes prisent dans des statistiques américaines. Si par exemple
@@ -267,8 +278,10 @@ Pour ce qui est du partage d’écran nous avons trois choix possible : partager
 contrôle, partager juste le bureau et partager juste l’IDE. Les solutions sont de la plus gourmande en
 connexion à la moins gourmande.
 
-\begin{figure*}[!t]
+\begin{table*}[!t]
 \begin{center}
+    \caption{An Example of a Table 2}
+    \label{table_example_2}
     \begin{tabular}{| l | l | l|}
     \hline
     Partage controle & Partage bureau & Partage IDE  \\ \hline
@@ -281,7 +294,7 @@ connexion à la moins gourmande.
     \hline
     \end{tabular}
 \end{center}
-\end{figure*}
+\end{table*}
 
 \subsection{Problème des métriques}
 % https://github.com/therubymug/hitch
@@ -332,6 +345,8 @@ Afin d'évaluer ces deux approches de manière concrète nous les avons mis en �
 
 
 \begin{figure*}[!t]
+\caption{Exemple de tests concernant le type \texttt{ISBN13}}
+\label{fig_test_example_isbn13}
 \begin{lstlisting}[language=FSharp, frame=single, basicstyle=\ttfamily\scriptsize]
 [<TestFixture>]
 type ``ISBN-13`` () =
@@ -366,27 +381,8 @@ type ``ISBN-13`` () =
 
 
 
+
 \section{Conclusion}
-
-
-
-
-\appendices
-\section{Proof of the First Zonklar Equation}
-Appendix one text goes here.
-
-% you can choose not to have a title for an appendix
-% if you want by leaving the argument blank
-\section{}
-Appendix two text goes here.
-
-
-% use section* for acknowledgement
-\section*{Acknowledgment}
-
-
-The authors would like to thank...
-
 
 % Can use something like this to put references on a page
 % by themselves when using endfloat and the captionsoff option.

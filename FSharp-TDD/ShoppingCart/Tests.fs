@@ -14,7 +14,7 @@ type ``ISBN-13`` () =
 
     [<Test>]
     member this.``Creating an ISBN from a correct string should be OK`` () =
-        ISBN13(validISBN) |> string |> should equal validISBN
+        ISBN13 validISBN |> string |> should equal validISBN
 
     [<Test>]
     member this.``Two ISBN objects with the same ISBN should be equal`` () = 
@@ -29,7 +29,7 @@ type ``ISBN-13`` () =
         (fun () -> ISBN13 "" |> ignore) |> should throw typeof<InvalidISBNString>
 
     [<Test>]
-    member this.``Trying to create an ISBN from a string containing non-digits characters should raise an exception`` () = 
+    member this.``Trying to create an ISBN from a non-digits characters string should raise an exception`` () = 
         (fun () -> ISBN13 "abcéà$_:;" |> ignore) |> should throw typeof<InvalidISBNString>
 
     [<Test>]
@@ -57,7 +57,9 @@ type ``Currency`` () =
 
     [<Test>]
     member this.``A money object should be equatable to another money object although the currency isn't the same`` () = 
+        Money(12, USD) |> should equal (Money(12, USD))
         Money(12, USD) |> should equal (Money(10.8M, CHF))
+        Money(12, USD) |> should not' (equal (Money(13, USD)))
         Money(12, USD) |> should not' (equal (Money(12, CHF)))
 
     [<Test>]
