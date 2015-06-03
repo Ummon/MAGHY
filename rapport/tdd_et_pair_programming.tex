@@ -135,40 +135,17 @@ Les tests unitaires -> s'ajoute un processus d'intégration continue
 
 \section{Pair programming}
 \subsection{Concept}
-Le pair programming consiste à écrire du code en étant deux personnes. Une ayant le rôle de
-conducteur, celui qui écrit les lignes de code. Et l’autre ayant le rôle de navigateur, celui qui doit
-diriger l’autre. Ces rôles sont échangés à un intervalle plus ou moins régulier. Il faut comprendre que
-le pair programming s’adapte à ses utilisateurs. Donc il est rare de trouver des règles absolues sur le
-déroulement.
+Le pair programming consiste à écrire du code en étant deux personnes. Une ayant le rôle de conducteur, celui qui écrit les lignes de code. Et l’autre ayant le rôle de navigateur, celui qui doit diriger le conducteur. Ces rôles sont échangés à un intervalle plus ou moins régulier. Il faut comprendre que le pair programming s’adapte à ses utilisateurs. Donc il est rare de trouver des règles absolues sur le déroulement.
 
-Cependant la règle qui pourrait être qualifiée la plus importante est celle de l’échange entre les deux
-personnes. Cet échange permet de synchroniser le groupe. Lorsque vous regardez quelqu’un coder
-vous aurez tendance à lâcher le fil. Sauf si ce codeur vous indiques chaque chose qu’il va
-entreprendre et vous demande de vous assurer qu’il va au bon endroit. Très vite une inertie se crée
-et on aura même tendance à oublier de prendre une pause.
+Cependant la règle qui pourrait être qualifiée la plus importante est celle de la communication entre les deux personnes. Cet échange permet de synchroniser le groupe. Lorsque vous regardez quelqu’un coder vous aurez tendance à lâcher le fil. Sauf si ce codeur vous indique chaque chose qu’il va entreprendre et vous demande de vous assurer qu’il va au bon endroit. Très vite une inertie se crée et on aura même tendance à oublier de prendre une pause.
 
-En étant toujours concentrer sur le code on devient vite fatigué. Alors il ne faut s’arrêter 2-4 minutes,
-penser à autre chose, manger un fruit, ou faire un peu d’exercice. C’est très important et ça rejoint
-l’aspect de ne pas faire d’heure supplémentaire dans le monde agile. Sinon on arrive trop vite au
-burnout.
+En étant toujours concentrer sur le code on devient vite fatigué. Alors il  faut s’arrêter 2-4 minutes, penser à autre chose, manger un fruit, ou faire un peu d’exercice. C’est très important et ça rejoint l’aspect de ne pas faire d’heure supplémentaire dans le monde agile. Sinon on arrive vite au burnout.
 
-Il faut toujours que les deux personnes sachent où elles vont. Nous venons de le voir sur une courte
-portée, mais aussi avec une portée plus grande. Lorsqu’on commence à travailler on définit une
-tâche global qui est notre but (en général elle nous prendra 1h-2h). Le navigateur doit d’autant plus
-bien garder en mémoire ce but. Si le codeur commence à écrire du code qui n’est pas en rapport
-avec la tâche finale, alors c’est au navigateur de le lui l’indiquer. Une fois la tâche finale définie, il faut
-définir une petite tâche qui doit prendre entre 5 à 10 minutes. Cela contribue à garder la
-synchronisation entre les deux membres.
+Il faut toujours que les deux personnes sachent où elles vont. Nous venons de le voir sur une courte portée, mais aussi avec une portée plus grande. Lorsqu’on commence à travailler on définit une tâche global qui est notre but (en général elle nous prendra 1h-2h). Le navigateur doit d’autant plus bien garder en mémoire ce but. Si le codeur commence à écrire du code qui n’est pas en rapport avec la tâche finale, alors c’est au navigateur de le lui l’indiquer. Une fois la tâche finale définie, il faut définir une petite tâche qui doit prendre entre 5 à 10 minutes. Cela contribue à garder la synchronisation entre les deux membres.
 
-Si le navigateur remarque que le codeur écrire une fonction non optimale, il ne doit pas déranger
-tout de suite le conducteur. Il faut laisser au conducteur le temps de finir sa fonction, puis ensuite on
-lui indique qu’il y a une erreur ou que la fonction n’est pas complète. Cela a pour but de ne pas
-arrêter en cours de créativité la personne qui code.
+Si le navigateur remarque que le codeur écrire une fonction non optimale, il ne doit pas déranger tout de suite le conducteur. Il faut laisser au conducteur le temps de finir sa fonction, puis ensuite on lui indique qu’il y a une erreur ou que la fonction n’est pas complète. Cela a pour but de ne pas arrêter en cours de créativité la personne qui code.
 
-Le pair programming coute en heures 15\% de plus, et fait 15\% de bug en moins[p.86]. Cependant il
-est fait plus rapidement et les bugs peuvent couter cher. Donc si on regarde non pas juste le cout de
-développement, mais le cout du programme une fois livré, on remarque que le pair programming est
-bénéfique. Voici un tableau résumant les couts :
+Le pair programming coute en heures 15\% de plus, et fait 15\% de bug en moins[p.86]. Cependant il est fait plus rapidement et les bugs peuvent couter cher. Donc si on regarde non pas juste le cout de développement, mais le cout du programme une fois livré, on remarque que le pair programming est bénéfique. Voici un tableau résumant les couts :
 
 \begin{table*}[!t]
 \begin{center}
@@ -204,20 +181,11 @@ bénéfique. Voici un tableau résumant les couts :
 \end{center}
 \end{table*}
 
-Donc dans ce cas on voit qu’il est bénéfique d’utiliser le pair programming. Il faut retenir que cet
-exemple utilise toujours des moyennes prisent dans des statistiques américaines. Si par exemple
-votre but n’est pas de maintenir les bugs une fois votre programme fini, le pair programming vous
-couteras plus cher.
+Donc dans ce cas on voit qu’il est bénéfique d’utiliser le pair programming. Il faut retenir que cet exemple utilise toujours des moyennes prisent dans des statistiques américaines. Si par exemple votre but n’est pas de maintenir les bugs une fois votre programme fini, le pair programming vous couteras plus cher.
 
-Le pair programming aide également pour l’échange du savoir. Lorsque qu’on regarde quelqu’un
-coder on voit tout de suite ce qu’on ferrait différemment. Par exemple si votre collègue n’utilise pas
-un raccourci clavier pratique ou alors qu’il fait des boucles for au lieu des foreach. Parfois ça peut
-être un détail mais d’autre fois on remarque que l’autre personne a une grosse lacune et elle peut
-tout de suite apprendre et progresser via vos remarques.
+Le pair programming aide également pour l’échange du savoir. Lorsque qu’on regarde quelqu’un coder on voit tout de suite ce qu’on ferrait différemment. Par exemple si votre collègue n’utilise pas un raccourci clavier pratique ou alors qu’il fait des boucles for au lieu des foreach. Parfois ça peut être un détail mais d’autre fois on remarque que l’autre personne a une grosse lacune et elle peut tout de suite apprendre et progresser via vos remarques.
 
-Faire des remarques est très délicat. Lorsqu’on fait du pair programming il faut savoir mettre son égo
-de coté. Mais il faut aussi savoir faire des remarques constructives et non pas juste rabaisser votre
-collègue. Certaines personnes se sont déjà fait virer pour un manque de tact.
+Faire des remarques est très délicat. Lorsqu’on fait du pair programming il faut savoir mettre son égo de coté. Mais il faut aussi savoir faire des remarques constructives et non pas juste rabaisser votre collègue. Certaines personnes se sont déjà fait virer pour un manque de tact.
 
 Pour l’expérience des pairs, nous pouvons avoir 3 cas.
 
@@ -227,46 +195,26 @@ Pour l’expérience des pairs, nous pouvons avoir 3 cas.
   \item Senior - Senior
 \end{itemize}
 
-La pair Senior-Junior est celles où le transfert de savoir est la plus importante. S’il n’est pas possible
-de faire ce type de pair, alors on peut faire les deux restantes. Mais il ne faut pas oublier qu’un junior
-peut apprendre à un senior. Parfois certain senior rouillent.
+La pair Senior-Junior est celles où le transfert de savoir est la plus importante. S’il n’est pas possible de faire ce type de pair, alors on peut faire les deux restantes. Mais il ne faut pas oublier qu’un junior peut apprendre à un senior. Parfois certain senior rouillent.
 
 \subsection{Variation des pairs}
 
 % blog.pivotal.io/pivotal-labs/labs/pair-programming-matrix
-Il est bien de varier les paires. Faire le maximum de combinaisons possibles avec chaque membre de
-l’équipe. Cela optimise le transfert de savoir de toute l’équipe. Mais souvent avec le temps il y a des
-affinités qui se créer et on va préférer un collègue plutôt qu’un autre. Une manière de résoudre ce
-problème et d’avoir une matrice triangulaire. L’on peut y voir rapidement si les pairs sont
-déséquilibré ou non. Un problème surgit quand l’équipe de développement est trop grande, cela
-devient un peu trop complexe. Alors c’est un bon signe pour faire des équipes plus petites.
+Il est bien de varier les paires. Faire le maximum de combinaisons possibles avec chaque membre de l’équipe. Cela optimise le transfert de savoir de toute l’équipe. Mais souvent avec le temps il y a des affinités qui se créer et on va préférer un collègue plutôt qu’un autre. Une manière de résoudre ce problème et d’avoir une matrice triangulaire. L’on peut y voir rapidement si les pairs sont déséquilibré ou non. Un problème surgit quand l’équipe de développement est trop grande, cela devient un peu trop complexe. Alors c’est un bon signe pour faire des équipes plus petites.
 
-Pour ce qui est de la cadence de rotation, il existe plusieurs avis. Certains disent qu’il faut changer
-tous les jours, d’autre chaque semaine et voir certain à chaque fin de projet. Il faut trouver la
+Pour ce qui est de la cadence de rotation, il existe plusieurs avis. Certains disent qu’il faut changer tous les jours, d’autre chaque semaine et voir certain à chaque fin de projet. Il faut trouver la
 cadence qui convient au mieux à celle de l’équipe.
 
 \subsection{Review programming}
 
-Le concept du review programming est de demander à une ou plusieurs personnes de relire votre
-code et de donner des critiques constructives dessus. C’est une alternative si votre manager n’est pas
-convaincu par le pair programming. Mais il se peut aussi que les reviewers ne soient pas très
-impliqué et ne vous donne qu’un avis général. Le review programming a aussi une sorte de latence.
-Lorsqu’on fait des critiques après que le code soit écrit, cela peut être moins bien perçu par le
-codeur. Surtout quand c’est votre patron. Alors qu’en pair programming, on fait les remarques à
-chaud, ce qui diminue l’impact de « tu n’as pas bien fait les choses ». Un des avantage de review,
-c’est qu’on a pas besoin d’être dans la même pièce pour faire la review correctement.
+Le concept du review programming est de demander à une ou plusieurs personnes de relire votre code et de donner des critiques constructives dessus. C’est une alternative si votre manager n’est pas convaincu par le pair programming. Mais il se peut aussi que les reviewers ne soient pas très
+impliqué et ne vous donne qu’un avis général. Le review programming a aussi une sorte de latence. Lorsqu’on fait des critiques après que le code soit écrit, cela peut être moins bien perçu par le codeur. Surtout quand c’est votre patron. Alors qu’en pair programming, on fait les remarques à chaud, ce qui diminue l’impact de « tu n’as pas bien fait les choses ». Un des avantage de review, c’est qu’on a pas besoin d’être dans la même pièce pour faire la review correctement.
 
-Les deux méthodes ont un point faible, la motivation. Si un des développeurs n’est pas du tout
-intéressé par le pair ou review programming, alors il est difficile d’en sortir quelque chose de bon.Même si l’initiateur tente de motiver son collègue. Ces techniques sont puissantes grâce à leur
-aspect social, mais c’est aussi leur point faible.
+Les deux méthodes ont un point faible, la motivation. Si un des développeurs n’est pas du tout intéressé par le pair ou review programming, alors il est difficile d’en sortir quelque chose de bon.Même si l’initiateur tente de motiver son collègue. Ces techniques sont puissantes grâce à leur aspect social, mais c’est aussi leur point faible.
 
 \subsection{Remote programming}
 
-Lorsqu’on travaille sur des projets avec des développeurs qui vivent dans d’autres pays, il est difficile
-de se retrouver dans la même pièce pour programmer ensemble. La solution est de passer par
-internet. Il faut un logiciel de voix sur IP(VoIP) et un logiciel de partage d’écran. Ces deux
-technologies impliquent une bonne connexion internet pour ne pas avoir de latence lorsqu’on code
-où qu’on regarde l’autre personne coder.
+Lorsqu’on travaille sur des projets avec des développeurs qui vivent dans d’autres pays, il est difficile de se retrouver dans la même pièce pour programmer ensemble. La solution est de passer par internet. Il faut un logiciel de voix sur IP(VoIP) et un logiciel de partage d’écran. Ces deux technologies impliquent une bonne connexion internet pour ne pas avoir de latence lorsqu’on code où qu’on regarde l’autre personne coder.
 
 Voici une liste de logiciel VoIP (non exhaustive) :
 
@@ -279,9 +227,7 @@ Voici une liste de logiciel VoIP (non exhaustive) :
 \end{itemize}
 \end{multicols}
 
-Pour ce qui est du partage d’écran nous avons trois choix possible : partager le bureau et son
-contrôle, partager juste le bureau et partager juste l’IDE. Les solutions sont de la plus gourmande en
-connexion à la moins gourmande.
+Pour ce qui est du partage d’écran nous avons trois choix possible : partager le bureau et son contrôle, partager juste le bureau et partager juste l’IDE. Les solutions sont de la plus gourmande en connexion à la moins gourmande.
 
 \begin{table*}[!t]
 \begin{center}
@@ -305,35 +251,18 @@ connexion à la moins gourmande.
 % https://github.com/therubymug/hitch
 % https://github.com/glg/git-pairing
 
-Le pair programming pose des problèmes lorsqu’on a un environnement qui calcule des métriques.
-Souvent ces derniers ne sont pas adaptés pour des pairs. Il existe néant moins des programmes
-communautaires qui tentent de pallier ce problème. Par exemple git-pairing permet d’indiquer
-qu’elles pairs étaient sur le commit. Cela fonctionne mais il y a peu d’utilisateur donc il faut être
-attentif si jamais il y a des bugs.
+Le pair programming pose des problèmes lorsqu’on a un environnement qui calcule des métriques. Souvent ces derniers ne sont pas adaptés pour des pairs. Il existe néant moins des programmes communautaires qui tentent de pallier ce problème. Par exemple git-pairing permet d’indiquer qu’elles pairs étaient sur le commit. Cela fonctionne mais il y a peu d’utilisateur donc il faut être attentif si jamais il y a des bugs.
 
 \subsection{Pair programming dans l’éducation}
 
 % http://www.realsearchgroup.org/pairlearning/index.php
 
-Deux universités ont fait des statistiques sur leurs étudiants qui commencer dans leurs études. La
-North Carolina State University (NCSU) et la University of California Santa Cruz (UCSC). L’étude
-portait sur l’impact du pair programming dans les cours de programmation. Elle s’est déroulée sur
+Deux universités ont fait des statistiques sur leurs étudiants qui commencer dans leurs études. La North Carolina State University (NCSU) et la University of California Santa Cruz (UCSC). L’étude portait sur l’impact du pair programming dans les cours de programmation. Elle s’est déroulée sur
 1200 élèves sur une période de 3 ans (bachelor).
 
-Les étudiants ayant fait du pair programming avait de meilleures notes en travaux pratiques et écrits.
-Il y a eu plus d’étudiants qui réussissaient leur examen de première avec une note de C ou meilleur
-(équivalent au 5 suisse). Lorsqu’ils étaient en 2 ème année, les étudiants avaient tendance à mieux
-maintenir voir à améliorer leurs moyennes du cours de programmation de l’année précédente. 77\%
-des étudiants qui avaient fait du pair programming choisissaient en deuxième année la suite du cours(contre 62\%). Et avaient tendences à mieux réussir le cours de deuxième année que ceux qui avait
-programmé seul. Et finalement plus d’étudiants choisissaient l’informatique comme matière
-principale ( NCSU: 57~\% vs. 34~\% ; UCSC : 25~\% vs. 11~\% ).
+Les étudiants ayant fait du pair programming avait de meilleures notes en travaux pratiques et écrits. Il y a eu plus d’étudiants qui réussissaient leur examen de première avec une note de C ou meilleur (équivalent au 5 suisse). Lorsqu’ils étaient en 2 ème année, les étudiants avaient tendance à mieux maintenir voir à améliorer leurs moyennes du cours de programmation de l’année précédente. 77\% des étudiants qui avaient fait du pair programming choisissaient en deuxième année la suite du cours(contre 62\%). Et avaient tendences à mieux réussir le cours de deuxième année que ceux qui avait programmé seul. Et finalement plus d’étudiants choisissaient l’informatique comme matière principale ( NCSU: 57~\% vs. 34~\% ; UCSC : 25~\% vs. 11~\% ).
 
-Finalement le mythe que les professeurs peuvent avoir sur « seulement un seul étudiant apprend
-lorsqu’il y a du pair programming » semble être faux. Les Etats-Unis manquent de programmeurs, et
-donc ils ont fait une campagne pour promouvoir la programmation dans les écoles. Cette campagne
-demandait à beaucoup de célébrités de promouvoir la programmation (Barack Obama, Mark
-Zuckerberg, Shakira, ...). Et certains professeur trouvait plus ludique pour de jeune écolier
-d’apprendre la programmation en pair plutôt que seul.
+Finalement le mythe que les professeurs peuvent avoir sur « seulement un seul étudiant apprend lorsqu’il y a du pair programming » semble être faux. Les Etats-Unis manquent de programmeurs, et donc ils ont fait une campagne pour promouvoir la programmation dans les écoles. Cette campagne demandait à beaucoup de célébrités de promouvoir la programmation (Barack Obama, Mark Zuckerberg, Shakira, ...). Et certains professeur trouvait plus ludique pour de jeune écolier d’apprendre la programmation en pair plutôt que seul.
 
 https://www.youtube.com/watch?v=vgkahOzFH2Q
 
