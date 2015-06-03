@@ -25,7 +25,7 @@
 \usepackage{eqparbox}
 \usepackage{fixltx2e}
 \usepackage{url}
-% \usepackage{stfloats}
+%\usepackage{stfloats}
 
 \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
 \definecolor{greencomments}{rgb}{0,0.5,0}
@@ -68,7 +68,14 @@ TDD, test-driven development, pair-programming.
 
 \section{Introduction}
 
-\IEEEPARstart{C}{eci} est un test.
+\IEEEPARstart{L}{a} réalisation d'un logiciel est toujours une aventure incertaine durant laquelle beaucoup de choix vont devoir être fait, notamment en terme de \emph{design}, qui vont fortement impacter la qualité finale. Nous présentons ici deux approches permettant de réduire cette incertitude et d'augmenter de manière générale la qualité d'un logiciel.
+
+La première approche proposée est le \emph{TDD} (\emph{test-driven development}). Cela consiste à systématiquement écrire des tests avant l'implémentation correspondante.
+
+La deuxième approche proposée est le \emph{pair programming} qui consiste à développer par paire en alternant la personne qui écrit le code et la personne qui la guide.
+
+Ces deux approches peuvent être utilisées de manière indépendante ou conjointe.
+
 
 \section{\emph{TDD} (\emph{test-driven development})}
 
@@ -97,22 +104,20 @@ Ce processus est itératif et va être réitéré pour chaque test jusqu'à abou
 
 Afin d'aider le développeur à structurer ce processus il est fortement conseillé de garder à jour une liste des éléments à tester (\emph{todo list}). Avant d'écrire le premier test, cette liste va être peupler avec tout ce que l'on pense pertinent à tester, puis va être mise à jour après chaque test.
 
+La phase de \emph{refactoring} est très importante et à ne pas négliger, elle va permettre d'obtenir un design et un code le plus propre possible au fur et à mesure de la réalisation de tests.
+
 Le code exécuté durant les tests ne doit réaliser aucune entrées-sorties comme, par exemple, accéder au système de fichier au réseau ou à une base de données. Cela a pour but d'obtenir des tests s'exécutant rapidement et ne dépendant pas de données externes. Afin de simuler une ressource externe il est nécessaire d'utiliser des objets \emph{mocks} qui vont posséder un comportement spécifique à ce que l'on souhaite tester et qui vont vérifier comment la ressource est accédée.
 
-
+Pour finir, précisons qu'il faut faire en sorte que les tests soit indépendants les uns des autres. Si possible, aucun état global ne doit être modifié par un test qui modifierai le comportement d'un autre.
 
 
 \subsection{Bénéfices}
 
+Les bénéfices de l'approche \emph{TDD} sont multiples. 
 
-* Aide à atteindre un meilleur design, plus modulaire, plus testable
-* Documentation de manière systèmatique de l'utilisation de l'API
-* Confiance (au moment d'écrire, par rapport au code déjà écrit)
-* Oblige à avoir des tests pour toutes les fonctionnalités
-* Meilleure qualité de manière générale
-* Approche pas forcément toujours nécessaire, dépend de l'utilisation du code et de la qualité souhaitée
+Premièrement cette approche oblige l'écriture systématique de tests pour chacune des fonctions d'une \emph{API}. Ces tests vont permettre, par la suite, d'éviter au maximum toute régression lors de modifications ultérieures. De plus les tests vont également servir à documenter l'utilisation d'une implémentation, cela se révélera d'une très grande valeur lorsque de nouveaux développeurs seront impliqués dans le projet. Les tests déjà présents jouent également un rôle dans la confiance des développeurs, qu'ils soient novices ou seniors. Lorsque ceux-ci sont amenés à réaliser des modification ou des ajouts, ils pourront à tout moment exécuter l'ensemble des tests est vérifier que les changements apportés ne casse rien.
 
-* Cohesion vs indpendant (testable)
+Deuxièmement le design du code va directement dépendre de cette approche en l'orientant vers des une meilleures modularité et, naturellement, une meilleur testabilité. La qualité général des composantes d'une application va tendre à s'améliorer. Cette approche a également pour but de coller au plus proche des spécifications en définissant dans un premier temps ce que l'on veut sous la forme de tests puis comment on résout notre problème via l'implémentation.
 
 
 \subsection{Correction de bugs}
@@ -271,6 +276,8 @@ Afin d'évaluer ces deux approches de manière concrète nous les avons mis en �
 \subsection{Outils utilisés}
 
 \subsection{blah}
+
+* Exemple d'utilisation conjointe : une personne écrit un test, l'autre l'implémentation et le test suivant, etc...
 
 
 \begin{figure*}[!t]
