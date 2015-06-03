@@ -15,7 +15,7 @@ type ``ISBN-13`` () =
     [<Test>]
     member this.``Creating an ISBN from a correct string should be OK`` () =
         ISBN13 validISBN |> string |> should equal validISBN
-
+    
     [<Test>]
     member this.``Two ISBN objects with the same ISBN should be equal`` () = 
         ISBN13 validISBN |> should equal (ISBN13 validISBN)
@@ -123,7 +123,6 @@ type ``Books`` () =
     [<Test>]
     member this.``Create a book with a negative price should raise an exception`` () = 
         (fun () -> Book(title, author, year, ISBN, Money(-42, USD)) |> ignore) |> should throw typeof<InvalidBookData>
-        
 
 [<TestFixture>]
 type ``Shopping cart`` () =

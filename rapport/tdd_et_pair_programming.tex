@@ -270,61 +270,81 @@ https://www.youtube.com/watch?v=vgkahOzFH2Q
 
 \subsection{But}
 
-Afin d'évaluer ces deux approches de manière concrète nous les avons mis en œuvre à l'aide d'un petit cas pratique. Cet exemple ne se veut en aucun cas exhaustive et ne montre qu'une introduction échelle réduite.
+Afin d'évaluer ces deux approches de manière concrète nous les avons mis en œuvre à l'aide d'un petit cas pratique. Cet exemple ne se veut en aucun cas exhaustif et ne montre qu'une introduction à échelle réduite.
+
+L'exemple proposé ici est la réalisation d'un panier d'achat électronique faisant partie d'une librairie online. La section suivante liste le périmètre fonctionnel de ce petit composant.
+
+\subsection{Spécifications fonctionnelles}
+
+Il doit être possible de créer des livres et de les ajouter ou de les enlever à un panier puis de lister son contenu. L'utilisateur doit pouvoir demander le prix d'un panier et payer celui, dans ce cas le statut du panier passe à \emph{payé} et ne peut plus être modifié.
+
+De plus la gestion des numéros \emph{ISBN-13} pour les livres est requis, une validation de l'intégrité de ce numéro doit être réalisée.
+
+Un livre comprend les champs suivants :
+\begin{itemize}
+   \item Un titre
+   \item Un auteur
+   \item Un prix
+   \item Une année de parution
+   \item Un numéro ISBN-13
+\end{itemize}
+
+Le prix doit pouvoir être défini en dollars (\emph{USD}), en francs suisse (\emph{CHF}) ou en bitcoins (\emph{XBT}). Les taux de change peuvent être modifiés de manière globale.
 
 
 \subsection{Outils utilisés}
 
-\subsection{blah}
+Nous avons décidé d'utiliser le langage \emph{F\#} qui a les caractéristiques d'être à la fois concis et très expressif. Nous avons utilisé le livre \emph{Testing with F\#} \ref{} pour nous guider dans notre démarche.
 
-* Exemple d'utilisation conjointe : une personne écrit un test, l'autre l'implémentation et le test suivant, etc...
+Le code a été écrit sous l'environnement de développement \emph{MonoDevelop}. Les bibliothèques \emph{FsUnit} et \emph{nUnit} ont été utilisées pour l'écriture des tests unitaires.
 
+La structure du projet comprend un fichier \texttt{Tests.fs} pour l'ensemble des tests, un fichier \texttt{Cart.fs} pour la gestion du panier, un fichier \texttt{Book.fs} décrivant le type d'un livre et d'un numéro ISBN-13 et un fichier \texttt{Currency.fs} pour la gestion des devises.
+
+
+\subsection{Démarche}
+
+Nous avons strictement suivi les deux approches, c'est à dire que nous écrivons d'abord un test unitaire dans le fichier \texttt{Tests.fs} puis sont implémentation dans fichier séparé. Concernant le \emph{pair-programming}, une personne jouait le rôle du pilote et écrivait un test pendant que l'autre jouait le rôle du navigateur. Puis les rôles étaient inversés, le navigateur devenait pilote et écrivait l'implémentation du test précédent et le test suivant. Cela faisait changer les rôles toutes les quinze minutes environ.
+
+La figure \ref{fig:test_example_isbn13} montre un extrait des tests concernant la gestion des devises. On peut constater que les manière d'écrire les tests s'approche le plus possible du langage naturel. L'ensemble du code est fournit en annexe.
 
 \begin{figure*}[!t]
-\caption{Exemple de tests concernant le type \texttt{ISBN13}}
-\label{fig_test_example_isbn13}
-\begin{lstlisting}[language=FSharp, frame=single, basicstyle=\ttfamily\scriptsize]
+\caption{Exemple de tests concernant le type \texttt{Money}}
+\label{fig:test_example_isbn13}
+\begin{lstlisting}[language=FSharp, frame=single, basicstyle=\ttfamily\small]
 [<TestFixture>]
-type ``ISBN-13`` () =
-    let validISBN = "9781784391232"
-    let invalidISBN = "9781784391233"
+type ``Currency`` () =
+    [<TestFixtureSetUp>]
+    member this.SetUp () =
+        USD_CHF_rate <- 0.9M
+        USD_XBT_rate <- 0.005M
 
     [<Test>]
-    member this.``Creating an ISBN from a correct string should be OK`` () =
-        ISBN13 validISBN |> string |> should equal validISBN
-
+    member this.``A money object should be printable`` () =
+        Money(42, USD) |> string |> should equal "42 USD"
+        Money(42.33M, USD) |> string |> should equal "42.33 USD"
+        
     [<Test>]
-    member this.``Two ISBN objects with the same ISBN should be equal`` () = 
-        ISBN13 validISBN |> should equal (ISBN13 validISBN)
-
-    [<Test>]
-    member this.``Trying to create an ISBN from an incorrect number should raise an exception`` () =
-        (fun () -> ISBN13 invalidISBN |> ignore) |> should throw typeof<InvalidISBNString>
-
-    [<Test>]
-    member this.``Trying to create an ISBN from an empty string should raise an exception`` () =
-        (fun () -> ISBN13 "" |> ignore) |> should throw typeof<InvalidISBNString>
-
-    [<Test>]
-    member this.``Trying to create an ISBN from a non-digits string should raise an exception`` () = 
-        (fun () -> ISBN13 "abc;$" |> ignore) |> should throw typeof<InvalidISBNString>
-
-    [<Test>]
-    member this.``Trying to create an ISBN from a null string should raise an exception`` () =
-        (fun () -> ISBN13 null |> ignore) |> should throw typeof<InvalidISBNString>
+    member this.``A money object should be comparable to another money object`` () =
+        Money(3, USD) > Money(1, USD) |> should be True
+        Money(2, CHF) > Money(2, USD) |> should be True
+        Money(1, XBT) <= Money(200, USD) |> should be True
+        Money(1, XBT) <= Money(180, CHF) |> should be True
 \end{lstlisting}
 \end{figure*}
 
 
+\subsection{Résultats}
+
+La paire étant du type \emph{senior-junior}, le pair-programming a permis un transfert de compétence en matière de programmation en \emph{F\#}. L'approche TDD a très bien fonctionné et à donné lieu à une implémentation robuste ainsi qu'a une batterie de tests automatisés. De plus le paradigme fonctionnel de \emph{F\#} s'accorde bien avec le \emph{TDD} car celui-ci prône la création de fonctions indépendantes qui améliore la testabilité et la modularité.
 
 
 \section{Conclusion}
 
-% Can use something like this to put references on a page
-% by themselves when using endfloat and the captionsoff option.
-\ifCLASSOPTIONcaptionsoff
-  \newpage
-\fi
+Souvent les approches TDD et pair-programming sont vu comme coûtant plus cher qu'une approche traditionnelle alors que leurs buts et justement une meilleure maîtrise du design du logiciel. Ceci induit une augmentation de la qualité mais également, \emph{in fine}, une baisse du coût global.
+
+Malgré cela, ces approches ne sont pas évidentes à mettre en place et nécessitent un apprentissage préliminaire. Par exemple, le pair-programming peut entraîner des frictions entre développeurs et le TDD peut sembler peut productif au départ.
+
+Nous encourageons tout développeur à essayer ces approches et à les adapter a sa manière de travailler.
 
 
 \begin{thebibliography}{1}
@@ -335,24 +355,4 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 
 \end{thebibliography}
 
-
-\begin{IEEEbiography}{Michael Shell}
-Biography text here.
-\end{IEEEbiography}
-
-% if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
-
-% insert where needed to balance the two columns on the last page with
-% biographies
-%\newpage
-
-\begin{IEEEbiographynophoto}{Jane Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
-
-
-% that's all folks
 \end{document}
