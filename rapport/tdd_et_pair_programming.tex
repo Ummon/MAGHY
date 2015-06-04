@@ -57,18 +57,18 @@
 \maketitle
 
 \begin{abstract}
-Cet article à pour but de présenter les approches \emph{TDD} (\emph{test-driven development}) et \emph{pair-programming} dans le domaine du développement logiciel, de mettre en avant leurs atouts ainsi que de les inscrire dans des méthodologies de développement connues.
+Cet article à pour but de présenter les approches \emph{TDD} (\emph{test-driven development}) et \emph{pair programming} dans le domaine du développement logiciel, de mettre en avant leurs atouts ainsi que de les inscrire dans des méthodologies de développement connues.
 \end{abstract}
 
 \begin{IEEEkeywords}
-TDD, test-driven development, pair-programming.
+\emph{TDD}, \emph{test-driven development}, \emph{pair programming}.
 \end{IEEEkeywords}
 
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
 
-\IEEEPARstart{L}{a} réalisation d'un logiciel est toujours une aventure incertaine durant laquelle beaucoup de choix vont devoir être fait, notamment en terme de \emph{design}, qui vont fortement impacter la qualité finale. Nous présentons ici deux approches permettant de réduire cette incertitude et d'augmenter de manière générale la qualité d'un logiciel.
+\IEEEPARstart{L}{a} réalisation d'un logiciel est toujours une aventure incertaine durant laquelle beaucoup de choix vont devoir être fais, notamment en terme de \emph{design}, qui vont fortement impacter la qualité finale. Nous présentons ici deux approches permettant de réduire cette incertitude et d'augmenter de manière générale la qualité d'un logiciel.
 
 La première approche proposée est le \emph{TDD} (\emph{test-driven development}). Cela consiste à systématiquement écrire des tests unitaires avant l'implémentation correspondante.
 
@@ -81,11 +81,11 @@ Ces deux approches peuvent être utilisées de manière indépendante ou conjoin
 
 \subsection{Motivations}
 
-Lorsqu'un développeur se met au travail et choisi de réaliser une nouvelle fonctionnalité d'un logiciel il va, en premier lieu, réfléchir comment celle-ci va être implémentée et quels changements il va devoir réaliser dans la structure actuelle du programme. Le développeur va ensuite ajouter ou modifier des types et implémenter les fonctions nécessaires pour répondre au spécifications. Puis, finalement, il va faire en sorte que le tout compile et il va lancer l'application afin de tester que ce qu'il vient de réaliser fonctionne bien.
+Lorsqu'un développeur se met au travail et choisit de réaliser une nouvelle fonctionnalité d'un logiciel, il va, en premier lieu, réfléchir comment celle-ci va être implémentée et quels changements il va devoir réaliser dans la structure actuelle du programme. Le développeur va ensuite ajouter ou modifier des types et implémenter les fonctions nécessaires pour répondre aux spécifications. Puis, finalement, il va faire en sorte que le tout compile et il va lancer l'application afin de tester que ce qu'il vient de réaliser fonctionne bien.
 
-Les problèmes de cette façon de faire sont multiples. Tout d'abord il y a de forte chance que la personne se soit écartée des spécifications ou ait voulu trop en faire en créant plus de types que nécessaire ou trop de couches d'abstraction. De plus, les tests n'étant effectués qu'à la fin de l'implémentation, il y fort à parier que le résultat ne corresponde pas complètement aux spécifications et que des bugs subsistent. Si certains de ces derniers sont liés au design alors il est probable que des modifications assez importantes vont devoir être réalisées. Si les tests ne sont que manuels, il n'y aura rien qui facilite la validation du fonctionnement des fonctionnalités dans le futur.
+Les problèmes de cette façon de faire sont multiples. Tout d'abord il y a de fortes chances que la personne se soit écartée des spécifications ou ait voulu trop en faire en créant plus de types que nécessaire ou trop de couches d'abstraction. De plus, les tests n'étant effectués qu'à la fin de l'implémentation, il y fort à parier que le résultat ne corresponde pas complètement aux spécifications et que des bugs subsistent. Si certains de ces derniers sont liés au design, alors il est probable que des modifications assez importantes vont devoir être réalisées. Si les tests ne sont que manuels, il n'y aura rien qui facilite la validation du fonctionnement des fonctionnalités dans le futur.
 
-Pour palier à ces problèmes le développeur peut adopter l'approche \emph{TDD} qui consiste à, dans un premier temps, écrire un test puis, ensuite, à écrire l'implémentation associée. Cela à pour objectif de décrire ce que l'on veut avant de réaliser l'implémentation y répondant exactement. De cette manière uniquement le code nécessaire à faire passer le test est écrit et pas plus.
+Pour palier à ces problèmes le développeur peut adopter l'approche \emph{TDD} qui consiste à, dans un premier temps, écrire un test puis, ensuite, à écrire l'implémentation associée. Cela a pour objectif de décrire ce que l'on veut avant de réaliser l'implémentation y répondant exactement. De cette manière, uniquement le code nécessaire à faire passer le test est écrit, et pas plus.
 
 
 \subsection{Fonctionnement}
@@ -98,58 +98,57 @@ Voici les trois étapes du processus.
    \item \emph{Refactorer} l'implémentation tout en maintenant le test au vert.
 \end{enumerate}
 
-Lors de l'écriture du test il faut se focaliser sur l'interface et non anticiper l'implémentation. Il est également important, qu'à la première étape, le test ne passe pas afin d'être sûr que ce que l'on veut tester n'existe pas ou ne fonctionne pas encore.
+Lors de l'écriture du test il faut se focaliser sur l'interface et non anticiper l'implémentation. Il est également important qu'à la première étape, le test ne passe pas afin d'être sûr que ce que l'on veut tester n'existe pas ou ne fonctionne pas encore.
 
-Ce processus est itératif et va être réitéré pour chaque test jusqu'à aboutir à une implémentation complète. Il est possible que des tests écrits précédemment doivent être modifiés ou deviennent obsolètes au file de la réalisation des fonctionnalités, dans ces cas il ne faudra pas hésiter à les modifier ou à les supprimer.
+Ce processus est itératif et va être réitéré pour chaque test jusqu'à aboutir à une implémentation complète. Il est possible que des tests écrits précédemment doivent être modifiés ou deviennent obsolètes au fil de la réalisation des fonctionnalités : dans ces cas il ne faudra pas hésiter à les modifier ou à les supprimer.
 
-Afin d'aider le développeur à structurer ce processus il est fortement conseillé de garder à jour une liste des éléments à tester (\emph{todo list}). Avant d'écrire le premier test, cette liste va être peupler avec tout ce que l'on pense pertinent à tester, puis va être mise à jour après chaque test.
+Afin d'aider le développeur à structurer ce processus il est fortement conseillé de garder à jour une liste des éléments à tester (\emph{todo list}). Avant d'écrire le premier test, cette liste va être peuplée avec tout ce que l'on pense pertinent à tester, puis va être mise à jour après chaque test.
 
-La phase de \emph{refactoring} est très importante et à ne pas négliger, elle va permettre d'obtenir un design et un code le plus propre possible au fur et à mesure de la réalisation de tests.
+La phase de \emph{refactoring} est très importante et à ne pas négliger, car elle va permettre d'obtenir un design et un code le plus propre possible au fur et à mesure de la réalisation de tests.
 
-Le code exécuté durant les tests ne doit réaliser aucune entrées-sorties comme, par exemple, accéder au système de fichier au réseau ou à une base de données. Cela a pour but d'obtenir des tests s'exécutant rapidement et ne dépendant pas de données externes. Afin de simuler une ressource externe il est nécessaire d'utiliser des objets \emph{mocks} qui vont posséder un comportement spécifique à ce que l'on souhaite tester et qui vont vérifier comment la ressource est accédée.
+Le code exécuté durant les tests ne doit réaliser aucune entrées-sorties comme, par exemple, accéder au système de fichier, au réseau ou à une base de données. Cela a pour but d'obtenir des tests s'exécutant rapidement et ne dépendant pas de données externes. Afin de simuler une ressource externe il est nécessaire d'utiliser des objets \emph{mocks} qui vont posséder un comportement spécifique à ce que l'on souhaite tester et qui vont vérifier comment la ressource est accédée.
 
-Pour finir, précisons qu'il faut faire en sorte que les tests soit indépendants les uns des autres. Si possible, aucun état global ne doit être modifié par un test qui modifierai le comportement d'un autre.
+Pour finir, précisons qu'il faut faire en sorte que les tests soient indépendants les uns des autres. Si possible, aucun état global ne doit être modifié par un test qui modifierait le comportement d'un autre.
 
 
 \subsection{Bénéfices}
 
 Les bénéfices de l'approche \emph{TDD} sont multiples. 
 
-Premièrement cette approche oblige l'écriture systématique de tests pour chacune des fonctions d'une \emph{API}. Ces tests vont permettre, par la suite, d'éviter au maximum toute régression lors de modifications ultérieures. De plus les tests vont également servir à documenter l'utilisation d'une implémentation, cela se révélera d'une très grande valeur lorsque de nouveaux développeurs seront impliqués dans le projet. Les tests déjà présents jouent également un rôle dans la confiance des développeurs, qu'ils soient novices ou seniors. Lorsque ceux-ci sont amenés à réaliser des modification ou des ajouts, ils pourront à tout moment exécuter l'ensemble des tests est vérifier que les changements apportés ne casse rien.
+Premièrement cette approche oblige l'écriture systématique de tests pour chacune des fonctions d'une \emph{API}. Ces tests vont permettre, par la suite, d'éviter au maximum toute régression lors de modifications ultérieures. De plus les tests vont également servir à documenter l'utilisation d'une implémentation : cela se révélera d'une très grande valeur lorsque de nouveaux développeurs seront impliqués dans le projet. Les tests déjà présents jouent également un rôle dans la confiance des développeurs, qu'ils soient novices ou seniors. Lorsque ceux-ci sont amenés à réaliser des modifications ou des ajouts, ils pourront à tout moment exécuter l'ensemble des tests et vérifier que les changements apportés ne cassent rien.
 
-Deuxièmement le design du code va directement dépendre de cette approche en l'orientant vers des une meilleures modularité et, naturellement, une meilleur testabilité. La qualité général des composantes d'une application va tendre à s'améliorer. Cette approche a également pour but de coller au plus proche des spécifications en définissant dans un premier temps ce que l'on veut sous la forme de tests puis comment on résout notre problème via l'implémentation.
+Deuxièmement le design du code va directement dépendre de cette approche en l'orientant vers une meilleure modularité et, naturellement, une meilleure testabilité. La qualité générale des composantes d'une application va tendre à s'améliorer. Cette approche a également pour but de coller au plus proche des spécifications en définissant dans un premier temps ce que l'on veut sous la forme de tests, puis comment on résout notre problème via l'implémentation.
 
 
 \subsection{Correction de bugs}
 
-La correction du bug peut aussi suivre une forme s'approchant du \emph{TDD}. Lorsqu'un bug doit être corrigé, l'on va d'abord ajouter un ou plusieurs tests qui vont échoués afin de mettre en évidence le bug. Le code incriminé va ensuite être corrigé afin que le test passe. Une phase de \emph{refactoring} peut
+La correction des bugs peut aussi suivre une forme s'approchant du \emph{TDD}. Lorsqu'un bug doit être corrigé, l'on va d'abord ajouter un ou plusieurs tests qui vont échouer afin de mettre en évidence le bug. Le code incriminé va ensuite être corrigé afin que le test passe. Une phase de \emph{refactoring} peut également être appliquée après la correction d'un ou plusieurs bugs.
 
 Cette approche est à la fois importante pour la documentation du bug corrigé mais également pour éviter toute régression ultérieure.
 
 
-\subsection{Intégration avec une approche agile}
+\subsection{Intégration avec une approche \emph{agile}}
 
-Les tests unitaires -> s'ajoute un processus d'intégration continue
+Les tests unitaires sont une pratique courante dans le monde \emph{agile}, il est alors naturel de vouloir intégrer le \emph{TDD} dans le processus de développement. Dans \emph{Scrum}, par exemple, chaque tâche d'un \emph{sprint} va être implémentée en écrivant, dans un premier temps, les tests automatisés. Ceux-ci s'ajouteront au processus d'intégration afin de renforcer la qualité du produit final. Il ne faut pas oublier de prendre en compte l'écriture systématique de tests lors des estimations car ceux-ci peuvent allonger la durée de développement.
 
 
-
-\section{Pair programming}
+\section{\emph{Pair programming}}
 \subsection{Concept}
-Le pair programming consiste à écrire du code en étant deux personnes. Une ayant le rôle de conducteur, celui qui écrit les lignes de code. Et l’autre ayant le rôle de navigateur, celui qui doit diriger le conducteur. Ces rôles sont échangés à un intervalle plus ou moins régulier. Il faut comprendre que le pair programming s’adapte à ses utilisateurs. Donc il est rare de trouver des règles absolues sur le déroulement.
+Le \emph{pair programming} consiste à écrire du code en étant deux personnes. Une ayant le rôle de conducteur, celui qui écrit les lignes de code. Et l’autre ayant le rôle de navigateur, celui qui doit diriger le conducteur. Ces rôles sont échangés à un intervalle plus ou moins régulier. Il faut comprendre que le \emph{pair programming} s’adapte à ses utilisateurs. Donc il est rare de trouver des règles absolues sur le déroulement.
 
-Cependant la règle qui pourrait être qualifiée la plus importante est celle de la communication entre les deux personnes. Cet échange permet de synchroniser le groupe. Lorsque vous regardez quelqu’un coder, vous aurez tendance à lâcher le fil. Sauf si ce codeur vous indique chaque chose qu’il va entreprendre et vous demande de vous assurer qu’il va au bon endroit. Très vite une inertie se crée et on aura même tendance à oublier de prendre une pause.
+Cependant, la règle qui pourrait être qualifiée de plus importante est celle de la communication entre les deux personnes. Cet échange permet de synchroniser le groupe. Lorsque vous regardez quelqu’un coder, vous aurez tendance à lâcher le fil. Sauf si ce codeur vous indique chaque chose qu’il va entreprendre et vous demande de vous assurer qu’il va au bon endroit. Très vite une inertie se crée et ils auraient même tendance à oublier de prendre une pause.
 
-En étant toujours concentré sur le code, on devient vite fatigué. Alors il  faut s’arrêter 2-4 minutes, penser à autre chose, manger un fruit, ou faire un peu d’exercice. C’est très important et ça rejoint l’aspect de ne pas faire d’heure supplémentaire dans le monde agile. Sinon on arrive vite au burnout.
+En étant toujours concentré sur le code, on devient vite fatigué. Alors il faut s’arrêter 2-3 minutes, penser à autre chose, manger un fruit, ou faire un peu d’exercice. C’est très important et ça rejoint l’aspect de ne pas faire d’heure supplémentaire dans le monde agile. Sinon on arrive vite au \emph{burnout}.
 
-Il faut toujours que les deux personnes sachent où elles vont. Nous venons de le voir sur une courte portée, mais aussi avec une portée plus grande. Lorsqu’on commence à travailler on définit une tâche globale qui est notre but (en général elle nous prendra 1h-2h). Le navigateur doit d’autant plus bien garder en mémoire ce but. Si le codeur commence à écrire du code qui n’est pas en rapport avec la tâche finale, alors c’est au navigateur de le lui l’indiquer. Une fois la tâche finale définie, il faut définir une petite tâche qui doit prendre entre 5 à 10 minutes. Puis après chaque petite tâche, il faut inverser les rôles. C'est un pattern qui s'appelle le Ping Pong pattern(*). Il contribue à garder la synchronisation entre les deux membres. \cite{PPping}
+Il faut toujours que les deux personnes sachent où elles vont. Nous venons de le voir sur une courte portée, mais aussi avec une portée plus grande. Lorsqu’on commence à travailler on définit une tâche globale qui est notre but (en général elle nous prendra entre une et deux heures). Le navigateur doit d’autant plus bien garder en mémoire ce but. Si le codeur commence à écrire du code qui n’est pas en rapport avec la tâche finale, alors c’est au navigateur de le lui l’indiquer. Une fois la tâche finale définie, il faut définir une petite tâche qui doit prendre entre 5 à 10 minutes. Puis après chaque petite tâche, il faut inverser les rôles. C'est un pattern qui s'appelle le \emph{Ping Pong pattern}~\cite{PPping}. Il contribue à garder la synchronisation entre les deux membres.
 
-Si le navigateur remarque que le codeur écrit une fonction non optimale, il ne doit pas le déranger tout de suite. Il faut laisser au conducteur le temps de finir sa fonction, puis ensuite on lui indique qu’il y a une erreur ou que la fonction n’est pas complète. Cela a pour but de ne pas l'arrêter en cours de sa créativité. Vous noterez qu'on ne lui dit pas qu'il fait une erreur, mais qu'il y a une erreur. C'est ce genre de subtilité qui permet une bonne santé à la paire.
+Si le navigateur remarque que le codeur écrit une fonction non optimale, il ne doit pas le déranger tout de suite. Il faut laisser au conducteur le temps de finir sa fonction, puis ensuite on lui indique qu’il y a une erreur ou que la fonction n’est pas complète. Cela a pour but de ne pas l'arrêter en cours de sa créativité. Vous noterez qu'on ne lui dit pas qu'il fait une erreur, mais qu'il y a une erreur. C'est ce genre de subtilité qui permet de conserver une bonne harmonie au sein de la paire.
 
-Le pair programming coute en heure 15\% de plus, et fait 15\% de bug en moins\cite[p.~86]{PPLaurie}. Cependant le code est écrit plus rapidement. Si on regarde toute la vie d'un logiciel, les bugs peuvent couter cher. Donc si on regarde non pas juste le cout de développement, mais le cout du programme une fois livré et maintenu, on remarque que le pair programming est bénéfique. Voici un tableau résumant les couts :
+Le \emph{pair programming} coûte en heure 15\% de plus, et réduit de 15\% le nombre de bug~\cite[p.~86]{PPLaurie}. Cependant le code est écrit plus rapidement. Si l'on regarde toute la vie d'un logiciel, les bugs peuvent coûter cher. Donc si on regarde non pas juste le coût de développement, mais le coût du programme une fois livré et maintenu, on remarque que le \emph{pair programming} est bénéfique. Le tableau \ref{table_example} résume les coûts.
 
 \begin{table*}[!t]
 \begin{center}
-    \caption{Tableau de comparaison du pair programming contre des développeurs seuls\cite[p.~71]{PPLaurie}}
+    \caption{Tableau de comparaison du \emph{pair programming} contre des développeurs seuls\cite[p.~71]{PPLaurie}}
     \label{table_example}
     \begin{tabular}{| l | l | l|}
     \hline
@@ -181,13 +180,13 @@ Le pair programming coute en heure 15\% de plus, et fait 15\% de bug en moins\ci
 \end{center}
 \end{table*}
 
-Donc dans ce cas on voit qu’il est bénéfique d’utiliser le pair programming. Il faut retenir que cet exemple utilise toujours des chiffres  prient dans des statistiques américaines. De plus dans certains cas, il serait moins rentable d'en faire. Par exemple si votre but n’est pas de maintenir les bugs une fois votre programme fini, le pair programming risque de vous couter plus cher.
+Donc dans ce cas on voit qu’il est bénéfique d’utiliser le \emph{pair programming}. Il faut retenir que cet exemple utilise toujours des chiffres pris dans des statistiques américaines. De plus dans certains cas, il serait moins rentable d'en faire. Par exemple si votre but n’est pas de maintenir les bugs une fois votre programme fini, le \emph{pair programming} risque de vous coûter plus cher.
 
-Le pair programming aide également pour l’échange du savoir. Lorsque qu’on regarde quelqu’un coder, l'on voit tout de suite ce que l'on ferait différemment. Par exemple si votre collègue n’utilise pas un raccourci clavier ou alors qu’il fait des boucles for au lieu de foreach. Parfois ça peut être un détail mais d’autres fois on remarque que l’autre personne a une grosse lacune et elle peut tout de suite apprendre et progresser via vos remarques.
+Le \emph{pair programming} aide également pour l’échange du savoir. Lorsqu’on regarde quelqu’un coder, l'on voit tout de suite ce que l'on ferait différemment. Par exemple si votre collègue n’utilise pas un raccourci clavier ou alors qu’il fait des boucles \texttt{for} au lieu de boucles \texttt{foreach}. Parfois ça peut être un détail, mais d’autres fois on remarque que l’autre personne a une grosse lacune et elle peut tout de suite apprendre et progresser via vos remarques.
 
-Faire des remarques est très délicat. Lorsqu’on fait du pair programming il faut savoir mettre son ego de coté. Mais il faut aussi savoir faire des remarques constructives et non pas juste rabaisser votre collègue.  Certaines personnes se sont déjà fait virer pour un manque de tact.
+Faire des remarques est très délicat. Lorsqu’on fait du \emph{pair programming} il faut savoir mettre son ego de côté. Mais il faut aussi savoir faire des remarques constructives et non pas juste rabaisser votre collègue. Certaines personnes se sont déjà fait licenciées à cause d'un manque de tact.
 
-Pour l’expérience des paires, nous pouvons avoir 3 cas :
+Pour l’expérience des paires, nous pouvons avoir trois cas :
 
 \begin{itemize}
   \item junior - junior
@@ -195,36 +194,36 @@ Pour l’expérience des paires, nous pouvons avoir 3 cas :
   \item senior - senior
 \end{itemize}
 
-La paire senior-junior est celle où le transfert de savoir est le plus important. S’il n’est pas possible de faire ce type de paire, alors on peut faire les deux restantes. Mais il ne faut pas oublier qu’un junior peut apprendre à un senior. Parfois certains seniors rouillent et souvent ont de la peine à mettre leur ego de coté.
+La paire senior-junior est celle où le transfert de savoir est le plus important. S’il n’est pas possible de faire ce type de paire, alors on peut faire les deux restantes. Mais il ne faut pas oublier qu’un junior peut apprendre à un senior. Parfois certains seniors rouillent et souvent ont de la peine à mettre leur ego de côté.
 
 \subsection{Variation des pairs}
 
-Il est bien de varier les paires. Faire le maximum de combinaisons possibles avec chaque membre de l’équipe. Cela optimise le transfert de savoir de toute l’équipe. Mais souvent avec le temps il y a des affinités qui se créent et on va préférer un collègue plutôt qu’un autre. Une manière de résoudre ce problème et d’avoir une matrice triangulaire. L’on peut y voir rapidement si les paires sont déséquilibrées ou non. Un problème survient lorsque l’équipe de développement est trop grande. La matrice devient trop complexe et donc illisible. Alors c’est un bon signe pour faire des équipes plus petites. \cite{PPMatrix}
+Il est bien de varier les paires et faire le maximum de combinaisons possibles avec chaque membre de l’équipe. Cela optimise le transfert de savoir de toute l’équipe. Mais souvent avec le temps il y a des affinités qui se créent et on va préférer un collègue plutôt qu’un autre. Une manière de résoudre ce problème est d’avoir une matrice triangulaire : ainsi on peut voir rapidement si les paires sont déséquilibrées ou non. Un problème survient lorsque l’équipe de développement est trop grande. La matrice devient trop complexe et donc illisible : alors c’est une bonne indication pour faire des équipes plus petites~\cite{PPMatrix}.
 
-Pour ce qui est de la cadence de rotation, il existe plusieurs avis. Certains disent qu’il faut changer tous les jours, d’autres chaque semaine et voir certain à chaque fin de projet. Il faut trouver la cadence qui convient au mieux à celle de l’équipe.
+Pour ce qui est de la cadence de rotation, il existe plusieurs avis. Certains disent qu’il faut changer tous les jours, d’autres chaque semaine, voire éventuellement à chaque fin de projet. Il faut trouver la cadence qui convient au mieux à celle de l’équipe.
 
-\subsection{Review programming}
+\subsection{\emph{Review programming}}
 
-Le concept du review programming est de demander à une ou plusieurs personnes de relire votre code et de donner des critiques constructives dessus. C’est une alternative si votre manager n’est pas convaincu par le pair programming. Mais il se peut aussi que les reviewers ne soient pas très impliqués et ne vous donnent qu’un avis général. Le review programming a aussi une sorte de latence. Lorsqu’on fait des critiques après que le code soit écrit, cela peut être moins bien perçu par le codeur. Surtout quand c’est votre patron. Alors qu’en pair programming, on fait les remarques à chaud, ce qui diminue l’impact de « tu n’as pas bien fait les choses ». Un des avantages de review, c’est qu’on n'a pas besoin d’être dans la même pièce pour faire la review correctement. De plus c'est beaucoup moins chronophage que du pair programming.
+Le concept du \emph{review programming} est de demander à une ou plusieurs personnes de relire votre code et de donner des critiques constructives dessus. C’est une alternative si votre manager n’est pas convaincu par le \emph{pair programming}. Mais il se peut aussi que les \emph{reviewers} ne soient pas très impliqués et ne vous donnent qu’un avis général. Le \emph{review programming} a aussi une sorte de latence. Lorsqu’on fait des critiques après que le code soit écrit, cela peut être moins bien perçu par le codeur et surtout quand c’est votre patron. Alors qu’en \emph{pair programming}, on fait les remarques à chaud, ce qui diminue l’impact de « tu n’as pas bien fait les choses ». Un des avantages de \emph{review}, c’est qu’on n'a pas besoin d’être dans la même pièce pour faire la \emph{review} correctement. De plus c'est beaucoup moins chronophage que du \emph{pair programming}.
 
-Les deux méthodes ont un point faible, la motivation. Si un des développeurs n’est pas du tout intéressé par le pair ou review programming, alors il est difficile d’en sortir quelque chose de bon.Même si l’initiateur tente de motiver son collègue. Ces techniques sont puissantes grâce à leur aspect social, mais c’est aussi leur point faible.
+Les deux méthodes ont un point faible, la motivation. Si un des développeurs n’est pas du tout intéressé par le \emph{pair} ou \emph{review programming}, alors il est difficile d’en sortir quelque chose de bon, même si l’initiateur tente de motiver son collègue. Ces techniques sont puissantes grâce à leur aspect social, mais c’est aussi leur point faible.
 
-\subsection{Remote programming}
+\subsection{\emph{Remote programming}}
 
-Lorsqu’on travaille sur des projets avec des développeurs qui vivent dans d’autres pays, il est difficile de se retrouver dans la même pièce pour programmer ensemble. La solution est de passer par internet. Il faut un logiciel de voix sur IP(VoIP) et un logiciel de partage d’écran. Ces deux technologies impliquent une bonne connexion internet pour ne pas avoir de latence lorsqu’on code ou que l’on regarde l’autre personne coder.
+Lorsqu’on travaille sur des projets avec des développeurs qui vivent dans d’autres pays, il est difficile de se retrouver dans la même pièce pour programmer ensemble. La solution est de passer par Internet. Il faut un logiciel de voix sur \emph{IP} (\emph{VoIP}) et un logiciel de partage d’écran. Ces deux technologies impliquent une bonne connexion internet pour ne pas avoir de latence lorsqu’on code ou que l’on regarde l’autre personne coder.
 
-Voici une liste de logiciels VoIP (non exhaustive) :
+Voici une liste de logiciels \emph{VoIP} (non exhaustive) :
 
 \begin{multicols}{2}
 \begin{itemize}
-    \item Skype
-    \item Hangouts (Google+)
-    \item TeamSpeak
-    \item Mumble
+    \item \emph{Skype}
+    \item \emph{Hangouts (Google+)}
+    \item \emph{TeamSpeak}
+    \item \emph{Mumble}
 \end{itemize}
 \end{multicols}
 
-Pour ce qui est du partage d’écran nous avons trois choix possibles : partager le bureau et son contrôle, partager uniquement le bureau et partager juste l’IDE. Les solutions sont de la plus gourmande en connexion à la moins gourmande.
+Pour ce qui est du partage d’écran nous avons trois choix possibles : partager le bureau et son contrôle, partager uniquement le bureau et partager juste l’\emph{IDE}. Les solutions sont de la plus gourmande en connexion à la moins gourmande. La table \ref{table_example_2} montre des exemples de logiciels.
 
 \begin{table*}[!t]
 \begin{center}
@@ -246,18 +245,16 @@ Pour ce qui est du partage d’écran nous avons trois choix possibles : partage
 
 \subsection{Problème des métriques}
 
-Le pair programming pose des problèmes lorsqu’on a un environnement qui calcule des métriques. Souvent ces derniers ne sont pas adaptés pour des paires. Il existe néanmoins des programmes communautaires qui tentent de pallier ce problème. Par exemple git-pairing permet d’indiquer qu’elles paires étaient sur quel commit. Cela fonctionne mais il y a peu d’utilisateurs donc il faut être attentif si jamais il y a des bugs.
-\cite{PPIde1}
-\cite{PPIde2}
+Le \emph{pair programming} pose des problèmes lorsqu’on a un environnement qui calcule des métriques. Souvent ces derniers ne sont pas adaptés pour des paires. Il existe néanmoins des programmes communautaires qui tentent de pallier ce problème. Par exemple \emph{git-pairing} permet d’indiquer quelles paires étaient sur quel commit. Cela fonctionne mais il y a peu d’utilisateurs : il faut donc être attentif si jamais il y a des bugs~\cite{PPIde1}~\cite{PPIde2}.
 
-\subsection{Pair programming dans l’éducation}
+\subsection{\emph{Pair programming} dans l’éducation}
 
-Deux universités ont faites des statistiques sur leurs étudiants qui commençaient leurs études. La North Carolina State University (NCSU) et l'University of California Santa Cruz (UCSC). L’étude portait sur l’impact du pair programming dans les cours de programmation. Elle s’est déroulée sur 1200 élèves sur une période de 3 ans (bachelor).
+Deux universités ont fait des statistiques sur leurs étudiants qui commençaient leurs études. La \emph{North Carolina State University (NCSU)} et \emph{l'University of California Santa Cruz (UCSC)}. L’étude portait sur l’impact du \emph{pair programming} dans les cours de programmation. Elle s’est déroulée sur 1200 élèves sur une période de 3 ans (bachelor).
 
-Les étudiants ayant fait du pair programming avait de meilleures notes en travaux pratiques et écrits. Il y a eu plus d'étudiants qui réussissaient leur examen de première avec une note de C ou mieux (équivalant au 5 suisse). Lorsqu’ils étaient en 2e année, les étudiants avaient tendance à mieux maintenir voir à améliorer leurs moyennes du cours de programmation de l’année précédente. 77\% des étudiants qui avaient fait du pair programming choisissaient en deuxième année la suite du cours(contre 62\%). Et avaient tendance à mieux réussir le cours de deuxième année que ceux qui avaient programmés seuls. Et finalement plus d’étudiants choisissaient l’informatique comme matière principale ( NCSU: 57~\% vs. 34~\% ; UCSC : 25~\% vs. 11~\% ).
+Les étudiants ayant fait du \emph{pair programming} avaient de meilleures notes en travaux pratiques et écrits. Il y a eu plus d'étudiants qui réussissaient leur examen de première avec une note de \emph{C} ou mieux (équivalant au 5 suisse). Lorsqu’ils étaient en 2\ieme{} année, les étudiants avaient tendance à mieux maintenir, voire à améliorer leurs moyennes du cours de programmation de l’année précédente. 77\% des étudiants qui avaient fait du \emph{pair programming} choisissaient en deuxième année la suite du cours (contre 62~\%). Et ils avaient tendance à mieux réussir le cours de deuxième année que ceux qui avaient programmé seuls. De plus, un plus grand nombre d’étudiants choisissaient l’informatique comme matière principale (NCSU: 57~\% vs. 34~\% ; UCSC : 25~\% vs. 11~\%).
 \cite{PPEtude}
 
-Finalement le mythe que les professeurs peuvent avoir sur « seulement un  étudiant apprend lorsqu’il y a du pair programming » semble être faux. Les États-Unis manquent de programmeurs, et donc ils ont fait une campagne pour promouvoir la programmation dans les écoles. Cette campagne demandait à beaucoup de célébrités de promouvoir la programmation (Barak Obama, Mark Zuckerberg, Shakira, etc.). Et certains professeurs trouvaient plus ludique pour les jeunes écoliers à apprendre la programmation en paire plutôt que  tout seul. Cette campagne a été promue par code.org.
+Finalement le mythe selon lequel les professeurs pensent que « seulement un étudiant apprend lorsqu’il y a du \emph{pair programming} » semble être faux. Les États-Unis manquent de programmeurs, et donc ils ont fait une campagne pour promouvoir la programmation dans les écoles. Cette campagne demandait à beaucoup de célébrités de promouvoir la programmation (Barak Obama, Mark Zuckerberg, Shakira, etc.). Et certains professeurs trouvaient plus ludique pour les jeunes écoliers d'apprendre la programmation en paire plutôt que  tout seul. Cette campagne a été promue par \url{code.org}.
 \cite{PPGril}
 \cite{PPBarak}
 
@@ -271,9 +268,9 @@ L'exemple proposé ici est la réalisation d'un panier d'achat électronique fai
 
 \subsection{Spécifications fonctionnelles}
 
-Il doit être possible de créer des livres et de les ajouter ou de les enlever à un panier puis de lister son contenu. L'utilisateur doit pouvoir demander le prix d'un panier et payer celui, dans ce cas le statut du panier passe à \emph{payé} et ne peut plus être modifié.
+Il doit être possible de créer des livres et de les ajouter ou de les enlever à un panier puis de lister son contenu. L'utilisateur doit pouvoir demander le prix d'un panier et payer celui : dans ce cas le statut du panier passe à \emph{payé} et ne peut plus être modifié.
 
-De plus la gestion des numéros \emph{ISBN-13} pour les livres est requis, une validation de l'intégrité de ce numéro doit être réalisée.
+De plus la gestion des numéros \emph{ISBN-13} pour les livres est requise, et une validation de l'intégrité de ce numéro doit être réalisée.
 
 Un livre comprend les champs suivants :
 \begin{itemize}
@@ -281,7 +278,7 @@ Un livre comprend les champs suivants :
    \item Un auteur
    \item Un prix
    \item Une année de parution
-   \item Un numéro ISBN-13
+   \item Un numéro \emph{ISBN-13}
 \end{itemize}
 
 Le prix doit pouvoir être défini en dollars (\emph{USD}), en francs suisse (\emph{CHF}) ou en bitcoins (\emph{XBT}). Les taux de change peuvent être modifiés de manière globale.
@@ -289,18 +286,18 @@ Le prix doit pouvoir être défini en dollars (\emph{USD}), en francs suisse (\e
 
 \subsection{Outils utilisés}
 
-Nous avons décidé d'utiliser le langage \emph{F\#} qui a les caractéristiques d'être à la fois concis et très expressif. Nous avons utilisé le livre \emph{Testing with F\#} \ref{} pour nous guider dans notre démarche.
+Nous avons décidé d'utiliser le langage \emph{F\#} qui a les caractéristiques d'être à la fois concis et très expressif. Nous avons utilisé le livre \emph{Testing with F\#}~\cite{TDDLundin} pour nous guider dans notre démarche.
 
 Le code a été écrit sous l'environnement de développement \emph{MonoDevelop}. Les bibliothèques \emph{FsUnit} et \emph{nUnit} ont été utilisées pour l'écriture des tests unitaires.
 
-La structure du projet comprend un fichier \texttt{Tests.fs} pour l'ensemble des tests, un fichier \texttt{Cart.fs} pour la gestion du panier, un fichier \texttt{Book.fs} décrivant le type d'un livre et d'un numéro ISBN-13 et un fichier \texttt{Currency.fs} pour la gestion des devises.
+La structure du projet comprend un fichier \texttt{Tests.fs} pour l'ensemble des tests, un fichier \texttt{Cart.fs} pour la gestion du panier, un fichier \texttt{Book.fs} décrivant le type d'un livre et d'un numéro \emph{ISBN-13} et un fichier \texttt{Currency.fs} pour la gestion des devises.
 
 
 \subsection{Démarche}
 
-Nous avons strictement suivi les deux approches, c'est à dire que nous écrivons d'abord un test unitaire dans le fichier \texttt{Tests.fs} puis sont implémentation dans fichier séparé. Concernant le \emph{pair-programming}, une personne jouait le rôle du pilote et écrivait un test pendant que l'autre jouait le rôle du navigateur. Puis les rôles étaient inversés, le navigateur devenait pilote et écrivait l'implémentation du test précédent et le test suivant. Cela faisait changer les rôles toutes les quinze minutes environ.
+Nous avons strictement suivi les deux approches, c'est à dire que nous écrivons d'abord un test unitaire dans le fichier \texttt{Tests.fs} puis son implémentation dans un fichier séparé. Concernant le \emph{pair programming}, une personne jouait le rôle du pilote et écrivait un test pendant que l'autre jouait le rôle du navigateur. Puis les rôles étaient inversés, le navigateur devenait le pilote et écrivait l'implémentation du test précédent et le test suivant. Cela faisait changer les rôles toutes les quinze minutes environ.
 
-La figure \ref{fig:test_example_isbn13} montre un extrait des tests concernant la gestion des devises. On peut constater que les manière d'écrire les tests s'approche le plus possible du langage naturel. L'ensemble du code est fournit en annexe.
+La figure \ref{fig:test_example_isbn13} montre un extrait des tests concernant la gestion des devises. On peut constater que les manières d'écrire les tests s'approchent le plus possible du langage naturel. L'ensemble du code est fourni en annexe.
 
 \begin{figure*}[!t]
 \caption{Exemple de tests concernant le type \texttt{Money}}
@@ -330,45 +327,55 @@ type ``Currency`` () =
 
 \subsection{Résultats}
 
-La paire étant du type \emph{senior-junior}, le pair-programming a permis un transfert de compétence en matière de programmation en \emph{F\#}. L'approche TDD a très bien fonctionné et à donné lieu à une implémentation robuste ainsi qu'a une batterie de tests automatisés. De plus le paradigme fonctionnel de \emph{F\#} s'accorde bien avec le \emph{TDD} car celui-ci prône la création de fonctions indépendantes qui améliore la testabilité et la modularité.
+La paire étant du type \emph{senior-junior}, le \emph{pair programming} a permis un transfert de compétences en matière de programmation en \emph{F\#}. L'approche \emph{TDD} a très bien fonctionné et a donné lieu à une implémentation robuste ainsi qu'à une batterie de tests automatisés. De plus le paradigme fonctionnel de \emph{F\#} s'accorde bien avec le \emph{TDD} car celui-ci prône la création de fonctions indépendantes qui améliorent la testabilité et la modularité.
 
 
 \section{Conclusion}
 
-Souvent les approches TDD et pair-programming sont vu comme coûtant plus cher qu'une approche traditionnelle alors que leurs buts et justement une meilleure maîtrise du design du logiciel. Ceci induit une augmentation de la qualité mais également, \emph{in fine}, une baisse du coût global.
+Souvent les approches \emph{TDD} et \emph{pair programming} sont vues comme coûtant plus cher qu'une approche traditionnelle alors que leurs buts sont justement une meilleure maîtrise du design du logiciel. Ceci induit une augmentation de la qualité mais également, \emph{in fine}, une baisse du coût global.
 
-Malgré cela, ces approches ne sont pas évidentes à mettre en place et nécessitent un apprentissage préliminaire. Par exemple, le pair-programming peut entraîner des frictions entre développeurs et le TDD peut sembler peut productif au départ.
+Malgré cela, ces approches ne sont pas évidentes à mettre en place et nécessitent un apprentissage préliminaire. Par exemple, le \emph{pair programming} peut entraîner des frictions entre développeurs et le \emph{TDD} peut sembler peu productif au départ.
 
-Nous encourageons tout développeur à essayer ces approches et à les adapter a sa manière de travailler.
+Nous encourageons tout développeur à essayer ces approches et à les adapter à sa manière de travailler.
 
 
 \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibitem{TDDBeck}
+Kent Beck, \emph{Test-Driven Development}, 2003.
+
+\bibitem{TDDLundin}
+Mikael Lundin, \emph{Testing with F\#}, 2015.
+
+\bibitem{TDDDead}
+David Heinemeier Hansson, Kent Beck, Martin Fowler, \emph{Is TDD dead?}, 2014, \url{http://martinfowler.com/articles/is-tdd-dead/}.
+
+\bibitem{TDDSeemann}
+Mark Seemann, \emph{Look, No Mock! Functional TDD with F\#}, 2015, \url{http://www.infoq.com/presentations/mock-fsharp-tdd}.
 
 \bibitem{PPping}
-Example d'un pattern en pair programming, 04.05.2015, URL:
-\ttfamily{http://c2.com/cgi/wiki?PairProgrammingPingPongPattern}
+Example d'un pattern en pair programming, 04.05.2015, \url{http://c2.com/cgi/wiki?PairProgrammingPingPongPattern}.
 
 \bibitem{PPLaurie}
-Laurie Ann Williams \emph{The collaborative software process}, Department of Computer Science University of Utah , Août 2000.
+Laurie Ann Williams, \emph{The collaborative software process}, Department of Computer Science University of Utah , Août 2000.
 
 \bibitem{PPMatrix}
-Exemple de matrices pour le pair programming , 04.05.2015, URL: \ttfamily{ blog.pivotal.io/pivotal-labs/labs/pair-programming-matrix}
+Exemple de matrices pour le \emph{pair programming}, 04.05.2015, \url{http://blog.pivotal.io/pivotal-labs/labs/pair-programming-matrix}.
 
 \bibitem{PPIde1}
-Hitch est un logiciel pour faire du pair programming avec Git, 04.05.2015, URL: \ttfamily{ https://github.com/therubymug/hitch}
+\emph{Hitch} est un logiciel pour faire du \emph{pair programming} avec Git, 04.05.2015, \url{https://github.com/therubymug/hitch}.
+
 \bibitem{PPIde2}
-Git-pairing est un logiciel pour faire du pair programming avec Git, 04.05.2015, URL:
-\ttfamily{ https://github.com/glg/git-pairing}
+\emph{Git-pairing} est un logiciel pour faire du \emph{pair programming} avec Git, 04.05.2015, \url{https://github.com/glg/git-pairing}.
+
 \bibitem{PPEtude}
-Étude concernant le pair programming dans des universités américaines, 04.05.2015, URL:\ttfamily{ http://www.realsearchgroup.org/pairlearning/index.php etudes}
+Étude concernant le \emph{pair programming} dans des universités américaines, 04.05.2015, \url{http://www.realsearchgroup.org/pairlearning/index.php}.
+
 \bibitem{PPGril}
-Vidéo d'écolières explicant le pair programming, 04.05.2015, URL:\ttfamily{ https://www.youtube.com/watch?v=vgkahOzFH2Q}
+Vidéo d'écolières expliquant le \emph{pair programming}, 04.05.2015, \url{https://www.youtube.com/watch?v=vgkahOzFH2Q}.
+
 \bibitem{PPBarak}
-Vidéo de code.org pour promouvoir le pair programming via des célébrités., 04.05.2015, URL:\ttfamily{ https://www.youtube.com/watch?v=FC5FbmsH4fw}
+Vidéo de \url{code.org} pour promouvoir le \emph{pair programming} via des célébrités, 04.05.2015, \url{https://www.youtube.com/watch?v=FC5FbmsH4fw}.
 
 \end{thebibliography}
 
